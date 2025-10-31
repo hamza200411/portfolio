@@ -133,57 +133,6 @@
             color: #999;
         }
 
-        .terminal {
-            background: #0b1220;
-            color: #9be7a4;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-            padding: 18px;
-            border-radius: 10px;
-            box-shadow: 0 8px 30px rgba(9,11,15,0.06);
-            min-height: 160px;
-            overflow: auto;
-            border: 1px solid rgba(255,255,255,0.03);
-            line-height: 1.6;
-        }
-
-        .terminal .meta {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .terminal .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-        }
-        .terminal .dot.close { background: #ff5f57; }
-        .terminal .dot.min { background: #ffbd2e; }
-        .terminal .dot.max { background: #28c840; }
-
-        .terminal pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-word;
-            font-size: 13px;
-            color: #b8f3c0;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 14px;
-            background: #b8f3c0;
-            margin-left: 6px;
-            vertical-align: bottom;
-            animation: blink 1s steps(2) infinite;
-            border-radius: 2px;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-
         @media (max-width: 900px){
             .container{ padding: 0 28px; }
             .hero{ min-height: 75vh; padding: 30px 0; }
@@ -204,8 +153,6 @@
             .contact-link{ padding: 12px; border-radius: 8px; background: #fafafa; }
             footer{ padding: 24px 0; font-size: 13px; }
         }
-
-        #terminal { padding-top: 0; padding-bottom: 40px; }
     </style>
 </head>
 <body>
@@ -216,17 +163,6 @@
             <p class="intro">
                 I build web applications and work on server-side development. Currently studying at the University of Mosul, focusing on backend technologies and networking fundamentals.
             </p>
-        </section>
-
-        <section id="terminal" style="border-top: none; padding-top: 0;">
-            <div class="terminal" role="region" aria-label="simulated terminal">
-                <div class="meta" aria-hidden="true">
-                    <div class="dot close"></div>
-                    <div class="dot min"></div>
-                    <div class="dot max"></div>
-                </div>
-                <pre id="terminalContent" aria-live="polite"></pre><span id="terminalCursor" class="cursor" aria-hidden="true"></span>
-            </div>
         </section>
 
         <section id="about">
@@ -278,63 +214,6 @@
                 </a>
             </div>
         </section>
-
-        <footer>
-            <p>© 2025 Hamza Mohammed. All rights reserved.</p>
-        </footer>
     </div>
-
-    <script>
-        (function(){
-            const el = document.getElementById('terminalContent');
-            const cursor = document.getElementById('terminalCursor');
-            const lines = [
-                "$ whoami",
-                "hamza@home ~ backend dev who thinks SQL injection is a crime",
-                "",
-                "$ cat interests.txt",
-                "Building APIs that don't return 500 errors (most of the time)",
-                "Web security - because hackers are creative and I need to be more creative",
-                "Network security - learning why my router has 37 open ports",
-                "",
-                "$ cat secrets.log",
-                "I test in production sometimes. Please don't tell anyone.",
-                "I've Googled 'how to exit vim' more than once.",
-                "",
-                "$ sudo fix-all-bugs",
-                "Error: 99 bugs in the code... patch one out, 117 bugs remain",
-                "",
-                ""
-            ];
-            let lineIndex = 0;
-            let charIndex = 0;
-            let content = '';
-            function type(){
-                if(lineIndex >= lines.length){
-                    cursor.style.display = 'inline-block';
-                    return;
-                }
-                const line = lines[lineIndex];
-                if(charIndex < line.length){
-                    content += line.charAt(charIndex++);
-                    el.innerText = content;
-                    scrollBottom();
-                    setTimeout(type, 18 + Math.random() * 40);
-                } else {
-                    content += '\n';
-                    el.innerText = content;
-                    lineIndex++;
-                    charIndex = 0;
-                    scrollBottom();
-                    setTimeout(type, 220);
-                }
-            }
-            function scrollBottom(){
-                const terminal = el.parentNode;
-                terminal.scrollTop = terminal.scrollHeight;
-            }
-            setTimeout(type, 600);
-        })();
-    </script>
 </body>
 </html>
