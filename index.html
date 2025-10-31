@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza Mohammed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root{
+            --bg: #ffffff;
+            --text: #0a0a0a;
+            --muted: #666;
+            --accent: #0a0a0a;
+            --container-max: 1000px;
+            --pad-desktop: 40px;
+            --pad-mobile: 20px;
+        }
+
+        body{
+            font-family: "IBM Plex Sans", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+
+        .container{
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--pad-desktop);
+        }
+
+        .hero{
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: none;
+            gap: 18px;
+            padding: 40px 0;
+            padding-bottom: 20px;
+        }
+
+        .hero h1{
+            font-size: clamp(32px, 8vw, 64px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.05;
+        }
+
+        .hero .role{
+            font-size: clamp(14px, 2.2vw, 24px);
+            color: var(--muted);
+        }
+
+        .hero .intro{
+            font-size: clamp(15px, 2.4vw, 18px);
+            color: #444;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        section{
+            padding: clamp(40px, 8vw, 100px) 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        section:last-of-type{ border-bottom: none; }
+
+        h2{
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+            color: #999;
+        }
+
+        .skills-list{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 28px;
+        }
+
+        .skill-category h3{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .skill-category ul{ list-style: none; }
+
+        .skill-category li{
+            font-size: 16px;
+            color: var(--muted);
+            padding: 6px 0;
+        }
+
+        .contact-links{
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .contact-link{
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 6px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.18s ease, transform 0.12s ease;
+        }
+
+        .contact-link:active{ transform: translateY(1px); }
+        .contact-link:hover{ border-bottom-color: var(--accent); }
+
+        .contact-link i{ font-size: 20px; min-width: 20px; text-align: center; }
+
+        footer{
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .terminal {
+            background: #0b1220;
+            color: #9be7a4;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(9,11,15,0.06);
+            min-height: 160px;
+            overflow: auto;
+            border: 1px solid rgba(255,255,255,0.03);
+            line-height: 1.6;
+        }
+
+        .terminal .meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .terminal .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+        }
+        .terminal .dot.close { background: #ff5f57; }
+        .terminal .dot.min { background: #ffbd2e; }
+        .terminal .dot.max { background: #28c840; }
+
+        .terminal pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            color: #b8f3c0;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: #b8f3c0;
+            margin-left: 6px;
+            vertical-align: bottom;
+            animation: blink 1s steps(2) infinite;
+            border-radius: 2px;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        @media (max-width: 900px){
+            .container{ padding: 0 28px; }
+            .hero{ min-height: 75vh; padding: 30px 0; }
+            .skills-list{ gap: 22px; }
+        }
+
+        @media (max-width: 600px){
+            .container{ padding: 0 var(--pad-mobile); }
+            .hero{ min-height: 60vh; padding: 24px 0; }
+            .hero h1{ letter-spacing: -0.8px; }
+            section{ padding: 36px 0; }
+            .skills-list{ grid-template-columns: 1fr; gap: 20px; }
+            .contact-links{
+                flex-direction: column;
+                gap: 14px;
+                align-items: stretch;
+            }
+            .contact-link{ padding: 12px; border-radius: 8px; background: #fafafa; }
+            footer{ padding: 24px 0; font-size: 13px; }
+        }
+
+        #terminal { padding-top: 0; padding-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>Hamza Mohammed</h1>
+            <p class="role">Backend Developer & Networking Student</p>
+            <p class="intro">
+                I build web applications and work on server-side development. Currently studying at the University of Mosul, focusing on backend technologies and networking fundamentals.
+            </p>
+        </section>
+
+        <section id="terminal" style="border-top: none; padding-top: 0;">
+            <div class="terminal" role="region" aria-label="simulated terminal">
+                <div class="meta" aria-hidden="true">
+                    <div class="dot close"></div>
+                    <div class="dot min"></div>
+                    <div class="dot max"></div>
+                </div>
+                <pre id="terminalContent" aria-live="polite"></pre><span id="terminalCursor" class="cursor" aria-hidden="true"></span>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About</h2>
+            <p style="font-size: clamp(15px,2.4vw,18px); line-height:1.8; color:#444; max-width:700px;">
+                Hi! I'm Hamza, a backend developer who builds the systems that make websites and applications work. I spend most of my time working with Laravel, Livewire, and FilamentPHP to create web apps and APIs. I'm focused on web security and network security - understanding not just how to build things, but how to keep them safe. Currently, I'm learning more about networking and how everything connects. I'm also picking up Flutter to expand into mobile development.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Laravel</li>
+                        <li>PHP</li>
+                        <li>Livewire</li>
+                        <li>FilamentPHP</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Database & Languages</h3>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Learning</h3>
+                    <ul>
+                        <li>Networking</li>
+                        <li>Flutter Basics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-links">
+                <a href="https://github.com/hamza200411" class="contact-link" target="_blank" rel="noopener">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <span>github.com/hamza200411</span>
+                </a>
+                <a href="mailto:hamza.mohammed.200411@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span>hamza.mohammed.200411@gmail.com</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Hamza Mohammed. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            const el = document.getElementById('terminalContent');
+            const cursor = document.getElementById('terminalCursor');
+            const lines = [
+                "$ whoami",
+                "hamza@mosul ~ backend dev who thinks SQL injection is a crime",
+                "",
+                "$ cat interests.txt",
+                "Building APIs that don't return 500 errors (most of the time)",
+                "Web security - because hackers are creative and I need to be more creative",
+                "Network security - learning why my router has 37 open ports",
+                "",
+                "$ cat secrets.log",
+                "I test in production sometimes. Please don't tell anyone.",
+                "I've Googled 'how to exit vim' more than once.",
+                "",
+                "$ sudo fix-all-bugs",
+                "Error: 99 bugs in the code... patch one out, 117 bugs remain",
+                "",
+                ""
+            ];
+            
+            let lineIndex = 0;
+            let charIndex = 0;
+            let content = '';
+
+            function type() {
+                if (lineIndex >= lines.length) {
+                    cursor.style.display = 'inline-block';
+                    return;
+                }
+                
+                const line = lines[lineIndex];
+                
+                if (charIndex < line.length) {
+                    content += line.charAt(charIndex++);
+                    el.innerText = content;
+                    scrollBottom();
+                    setTimeout(type, 18 + Math.random() * 40);
+                } else {
+                    content += '\n';
+                    el.innerText = content;
+                    lineIndex++;
+                    charIndex = 0;
+                    scrollBottom();
+                    setTimeout(type, 220);
+                }
+            }
+
+            function scrollBottom() {
+                const terminal = el.parentNode;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+
+            setTimeout(type, 600);
+        })();
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            if ((e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.metaKey && e.altKey && e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+            if ((e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.metaKey && e.altKey && e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+            if ((e.ctrlKey && e.keyCode === 85) || (e.metaKey && e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+            if ((e.ctrlKey && e.shiftKey && e.keyCode === 67) || (e.metaKey && e.altKey && e.keyCode === 67)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
