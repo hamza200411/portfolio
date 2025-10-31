@@ -285,12 +285,12 @@
     </div>
 
     <script>
-        (function () {
+        (function(){
             const el = document.getElementById('terminalContent');
             const cursor = document.getElementById('terminalCursor');
             const lines = [
                 "$ whoami",
-                "hamza@mosul ~ backend dev who thinks SQL injection is a crime",
+                "hamza@home ~ backend dev who thinks SQL injection is a crime",
                 "",
                 "$ cat interests.txt",
                 "Building APIs that don't return 500 errors (most of the time)",
@@ -306,20 +306,16 @@
                 "",
                 ""
             ];
-            
             let lineIndex = 0;
             let charIndex = 0;
             let content = '';
-
-            function type() {
-                if (lineIndex >= lines.length) {
+            function type(){
+                if(lineIndex >= lines.length){
                     cursor.style.display = 'inline-block';
                     return;
                 }
-                
                 const line = lines[lineIndex];
-                
-                if (charIndex < line.length) {
+                if(charIndex < line.length){
                     content += line.charAt(charIndex++);
                     el.innerText = content;
                     scrollBottom();
@@ -333,41 +329,12 @@
                     setTimeout(type, 220);
                 }
             }
-
-            function scrollBottom() {
+            function scrollBottom(){
                 const terminal = el.parentNode;
                 terminal.scrollTop = terminal.scrollHeight;
             }
-
             setTimeout(type, 600);
         })();
-
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-            if ((e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.metaKey && e.altKey && e.keyCode === 73)) {
-                e.preventDefault();
-                return false;
-            }
-            if ((e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.metaKey && e.altKey && e.keyCode === 74)) {
-                e.preventDefault();
-                return false;
-            }
-            if ((e.ctrlKey && e.keyCode === 85) || (e.metaKey && e.keyCode === 85)) {
-                e.preventDefault();
-                return false;
-            }
-            if ((e.ctrlKey && e.shiftKey && e.keyCode === 67) || (e.metaKey && e.altKey && e.keyCode === 67)) {
-                e.preventDefault();
-                return false;
-            }
-        });
     </script>
 </body>
 </html>
