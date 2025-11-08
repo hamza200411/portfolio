@@ -4,171 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamza Mohammed</title>
+    <meta name="description" content="Hamza Mohammed — Backend Developer. I build web applications with Laravel (TALL stack), APIs, and MySQL. Studying networking at the University of Mosul with interest in web and network security.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Hamza Mohammed">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="Hamza Mohammed — Backend Developer">
+    <meta property="og:description" content="Backend Developer focused on Laravel (TALL stack), APIs, MySQL, and secure backend. Studying networking at the University of Mosul; interested in web and network security.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hamza Mohammed — Backend Developer">
+    <meta name="twitter:description" content="Backend Developer — Laravel (TALL), APIs, MySQL, and security. Studying networking at the University of Mosul.">
+    <meta name="keywords" content="Hamza Mohammed, Backend Developer, Laravel, TALL stack, Livewire, FilamentPHP, Tailwind CSS, MySQL, Database Design, PHP, OOP, REST API, GitHub, Web Security, Network Security, APIs, University of Mosul, Python, Flutter">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Hamza Mohammed","jobTitle":"Backend Developer & Networking Student","description":"Backend developer building web applications with Laravel (TALL stack), APIs, and MySQL. Studying networking at the University of Mosul with interest in web and network security.","worksFor":{"@type":"Organization","name":"University of Mosul"},"alumniOf":{"@type":"CollegeOrUniversity","name":"University of Mosul"},"sameAs":["https://github.com/hamza200411"],"email":"mailto:hamza.mohammed.200411@gmail.com","knowsAbout":["Laravel","PHP","Livewire","FilamentPHP","Tailwind CSS","MySQL","Database Design","OOP","REST API","GitHub","Web Security","Network Security","APIs","Python","Flutter","Networking"]}</script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root{
-            --bg: #ffffff;
-            --text: #0a0a0a;
-            --muted: #666;
-            --accent: #0a0a0a;
-            --container-max: 1000px;
-            --pad-desktop: 40px;
-            --pad-mobile: 20px;
-        }
+        :root{ --pad-desktop:40px; --pad-mobile:22px; }
+        html{ scroll-behavior:smooth; }
 
-        body{
-            font-family: "IBM Plex Sans", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-        }
+        body{ font-family:"Poppins",sans-serif; background:#fff; color:#111; line-height:1.55; -webkit-font-smoothing:antialiased; }
 
-        .container{
-            max-width: var(--container-max);
-            margin: 0 auto;
-            padding: 0 var(--pad-desktop);
-        }
+        .container{ max-width:940px; margin:0 auto; padding:0 var(--pad-desktop); }
 
-        .hero{
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-bottom: none;
-            gap: 18px;
-            padding: 40px 0;
-            padding-bottom: 20px;
-        }
+        .hero{ min-height:68vh; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:56px 0 24px; }
 
-        .hero h1{
-            font-size: clamp(32px, 8vw, 64px);
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            line-height: 1.05;
-        }
+        .hero h1{ font-size:54px; font-weight:700; letter-spacing:-0.5px; line-height:1.05; }
 
-        .hero .role{
-            font-size: clamp(14px, 2.2vw, 24px);
-            color: var(--muted);
-        }
+        .hero .role{ font-size:18px; color:#555; font-weight:500; }
 
-        .hero .intro{
-            font-size: clamp(15px, 2.4vw, 18px);
-            color: #444;
-            max-width: 700px;
-            line-height: 1.8;
-        }
+        .hero .intro{ font-size:17px; color:#444; max-width:680px; line-height:1.7; }
+        .about-text{ font-size:17px; line-height:1.7; color:#444; max-width:680px; }
 
-        section{
-            padding: clamp(40px, 8vw, 100px) 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
+        section{ padding:70px 0; border-bottom:1px solid #e4e4e4; }
 
         section:last-of-type{ border-bottom: none; }
 
-        h2{
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 28px;
-            color: #999;
-        }
+        h2{ font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:2px; margin-bottom:26px; color:#777; }
 
-        .skills-list{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 28px;
-        }
+        .skills-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:20px; }
 
-        .skill-category h3{
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+        .skill-category h3{ font-size:16px; font-weight:600; margin-bottom:6px; }
 
         .skill-category ul{ list-style: none; }
 
-        .skill-category li{
-            font-size: 16px;
-            color: var(--muted);
-            padding: 6px 0;
-        }
+        .skill-category li{ font-size:14px; color:#555; padding:4px 0; }
 
-        .contact-links{
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: flex-start;
-        }
+        .contact-links{ display:flex; gap:18px; flex-wrap:wrap; }
 
-        .contact-link{
-            text-decoration: none;
-            color: var(--text);
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 6px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.18s ease, transform 0.12s ease;
-        }
+        .contact-link{ text-decoration:none; color:#111; font-size:15px; display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid transparent; }
 
-        .contact-link:active{ transform: translateY(1px); }
-        .contact-link:hover{ border-bottom-color: var(--accent); }
+        .contact-link:hover{ border-bottom-color:#111; }
+        .contact-link:focus-visible{ outline:2px solid #111; outline-offset:2px; }
 
-        .contact-link i{ font-size: 20px; min-width: 20px; text-align: center; }
+    .contact-link i{ font-size:18px; min-width:20px; text-align:center; }
 
-        footer{
-            padding: 40px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #999;
-        }
+        @media (max-width:900px){ .container{ padding:0 30px; } .hero{ min-height:60vh; padding:48px 0 20px; } .hero h1{ font-size:48px; } section{ padding:60px 0; } }
 
-        @media (max-width: 900px){
-            .container{ padding: 0 28px; }
-            .hero{ min-height: 75vh; padding: 30px 0; }
-            .skills-list{ gap: 22px; }
-        }
-
-        @media (max-width: 600px){
-            .container{ padding: 0 var(--pad-mobile); }
-            .hero{ min-height: 60vh; padding: 24px 0; }
-            .hero h1{ letter-spacing: -0.8px; }
-            section{ padding: 36px 0; }
-            .skills-list{ grid-template-columns: 1fr; gap: 20px; }
-            .contact-links{
-                flex-direction: column;
-                gap: 14px;
-                align-items: stretch;
-            }
-            .contact-link{ padding: 12px; border-radius: 8px; background: #fafafa; }
-            footer{ padding: 24px 0; font-size: 13px; }
-        }
+        @media (max-width:600px){ .container{ padding:0 var(--pad-mobile); } .hero{ min-height:54vh; padding:40px 0 16px; } .hero h1{ font-size:40px; } section{ padding:50px 0; } .skills-list{ grid-template-columns:1fr; gap:16px; } .contact-links{ gap:14px; } }
     </style>
 </head>
 <body>
-    <div class="container">
+    <main class="container" role="main">
         <section class="hero">
             <h1>Hamza Mohammed</h1>
-            <p class="role">Backend Developer & Networking Student</p>
+            <p class="role">Backend Developer</p>
             <p class="intro">
-                I build web applications and work on server-side development. Currently studying at the University of Mosul, focusing on backend technologies and networking fundamentals.
+                I build web applications using Laravel. Currently studying at the <br> <b>University of Mosul</b>, focusing on backend technologies and networking.
             </p>
         </section>
 
         <section id="about">
             <h2>About</h2>
-            <p style="font-size: clamp(15px,2.4vw,18px); line-height:1.8; color:#444; max-width:700px;">
-                Hi! I'm Hamza, a backend developer who builds the systems that make websites and applications work. I spend most of my time working with Laravel, Livewire, and FilamentPHP to create web apps and APIs. I'm focused on web security and network security - understanding not just how to build things, but how to keep them safe. Currently, I'm learning more about networking and how everything connects. I'm also picking up Flutter to expand into mobile development.
+            <p class="about-text">
+                I'm Hamza, a <b>backend developer</b>, I work with <b>TALL</b> stack to create web apps, APIs, and Single Page Applications. I focus on web security and network security, I like to discover vulnerabilities in every website I visit. currently I'm studying networking. I'm also learning Flutter to build mobile applications.
             </p>
         </section>
 
@@ -180,6 +93,8 @@
                     <ul>
                         <li>Laravel</li>
                         <li>PHP</li>
+                        <li>OOP</li>
+                        <li>REST API</li>
                         <li>Livewire</li>
                         <li>FilamentPHP</li>
                     </ul>
@@ -188,14 +103,9 @@
                     <h3>Database & Languages</h3>
                     <ul>
                         <li>MySQL</li>
+                        <li>Database Design</li>
                         <li>Python</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Learning</h3>
-                    <ul>
-                        <li>Networking</li>
-                        <li>Flutter Basics</li>
+                        <li>Network Security & Web Security</li>
                     </ul>
                 </div>
             </div>
@@ -204,7 +114,7 @@
         <section id="contact">
             <h2>Get In Touch</h2>
             <div class="contact-links">
-                <a href="https://github.com/hamza200411" class="contact-link" target="_blank" rel="noopener">
+                <a href="https://github.com/hamza200411" class="contact-link" target="_blank" rel="noopener me">
                     <i class="fab fa-github" aria-hidden="true"></i>
                     <span>github.com/hamza200411</span>
                 </a>
@@ -214,6 +124,6 @@
                 </a>
             </div>
         </section>
-    </div>
+    </main>
 </body>
 </html>
