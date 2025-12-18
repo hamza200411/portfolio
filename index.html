@@ -75,22 +75,9 @@
             <div
                 style="margin-top:30px;text-align:center;font-size:10px;border-top:1px solid #808080;padding-top:5px;font-family:'MS Sans Serif',Geneva,sans-serif;color:#555">
                 last updated since the first time web was invented</div>
-             <br>
-            <div style="text-align: center;"><span id="view-counter" style="font-family: monospace; color: #000; font-weight: bold;">Views: 0</span></div>
         </div>
     </div>
 </body>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var counterElement = document.getElementById("view-counter");
-            var count = localStorage.getItem("page_views") || 0;
-            if (!sessionStorage.getItem("has_visited")) {
-                count = parseInt(count) + 1;
-                localStorage.setItem("page_views", count);
-                sessionStorage.setItem("has_visited", "true");
-            }
-            counterElement.innerText = "Views: " + count;
-        });
-    </script>
 </html>
+
 
