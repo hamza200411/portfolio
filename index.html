@@ -5,6 +5,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hamza Mohammed — Backend Developer</title>
+
+  <meta name="description"
+    content="Hamza Mohammed — Backend developer. 4th‑year Computer Science student building scalable Laravel backends, Filament admin panels, and Flutter apps.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://hamza-mohammed.me">
+  <meta property="og:title" content="Hamza Mohammed — Backend Developer">
+  <meta property="og:description"
+    content="4th‑year CS student building scalable Laravel backends, Filament admin panels and Flutter apps.">
+  <meta property="og:image" content="images/green-university-app.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hamza-mohammed.me">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#040a12">
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Hamza Mohammed" />
+  <link rel="manifest" href="/images/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://hamza-mohammed.me/#person",
+        "name": "Hamza Mohammed",
+        "url": "https://hamza-mohammed.me",
+        "image": "https://hamza-mohammed.me/images/green-university-app.png",
+        "jobTitle": "Backend Developer",
+        "description": "4th-year Computer Science student building scalable Laravel backends, Filament admin panels, and Flutter apps.",
+        "sameAs": [
+          "https://github.com/hamza200411",
+          "https://www.linkedin.com/in/hamza-mohammed-hashem-3634722a9"
+        ],
+        "knowsAbout": ["Laravel","FilamentPHP","Livewire","Flutter","Python","MySQL"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hamza-mohammed.me/#website",
+        "url": "https://hamza-mohammed.me",
+        "name": "Hamza Mohammed — Backend Developer",
+        "publisher": { "@id": "https://hamza-mohammed.me/#person" }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
@@ -47,8 +96,8 @@
     }
 
     .light-theme nav {
-      background: rgba(255,255,255,0.88);
-      border-bottom-color: rgba(2,6,23,0.06);
+      background: rgba(255, 255, 255, 0.88);
+      border-bottom-color: rgba(2, 6, 23, 0.06);
     }
 
     .light-theme .nav-links a {
@@ -56,14 +105,14 @@
     }
 
     .light-theme body.nav-open .nav-links {
-      background: rgba(255,255,255,0.98);
-      border-color: rgba(2,6,23,0.06);
-      box-shadow: 0 8px 30px rgba(2,6,23,0.04);
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(2, 6, 23, 0.06);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.04);
       color: var(--text);
     }
 
     .light-theme body.scrolled nav {
-      box-shadow: 0 6px 24px rgba(2,6,23,0.04);
+      box-shadow: 0 6px 24px rgba(2, 6, 23, 0.04);
     }
 
     html {
@@ -112,9 +161,9 @@
 
     body.scrolled nav {
       padding: .5rem 2.5rem;
-      background: rgba(4,10,18,.95);
-      box-shadow: 0 6px 24px rgba(2,6,23,0.08);
-      border-bottom-color: rgba(255,255,255,0.03);
+      background: rgba(4, 10, 18, .95);
+      box-shadow: 0 6px 24px rgba(2, 6, 23, 0.08);
+      border-bottom-color: rgba(255, 255, 255, 0.03);
     }
 
     body.scrolled .nav-logo {
@@ -240,13 +289,29 @@
       left: 0;
     }
 
-    .nav-toggle .hamburger::before { top: -6px; }
-    .nav-toggle .hamburger::after { top: 6px; }
+    .nav-toggle .hamburger::before {
+      top: -6px;
+    }
 
-    body.nav-open .nav-toggle { color: var(--cyan); }
-    body.nav-open .nav-toggle .hamburger { background: transparent; }
-    body.nav-open .nav-toggle .hamburger::before { transform: rotate(45deg) translate(3px,3px); }
-    body.nav-open .nav-toggle .hamburger::after { transform: rotate(-45deg) translate(3px,-3px); }
+    .nav-toggle .hamburger::after {
+      top: 6px;
+    }
+
+    body.nav-open .nav-toggle {
+      color: var(--cyan);
+    }
+
+    body.nav-open .nav-toggle .hamburger {
+      background: transparent;
+    }
+
+    body.nav-open .nav-toggle .hamburger::before {
+      transform: rotate(45deg) translate(3px, 3px);
+    }
+
+    body.nav-open .nav-toggle .hamburger::after {
+      transform: rotate(-45deg) translate(3px, -3px);
+    }
 
     .mobile-sheet {
       position: fixed;
@@ -254,10 +319,10 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(2,6,23,0.9);
+      background: rgba(2, 6, 23, 0.9);
       z-index: 400;
       padding: 2rem;
-      transition: opacity .22s ease, transform .28s cubic-bezier(.2,.9,.2,1);
+      transition: opacity .22s ease, transform .28s cubic-bezier(.2, .9, .2, 1);
       opacity: 0;
       pointer-events: none;
       -webkit-tap-highlight-color: transparent;
@@ -291,7 +356,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       color: var(--white);
       font-size: 1.05rem;
@@ -303,10 +368,10 @@
 
     .mobile-sheet-close:focus,
     .mobile-sheet-close:hover {
-      background: rgba(0,0,0,0.25);
+      background: rgba(0, 0, 0, 0.25);
       color: var(--cyan);
       transform: translateY(-1px);
-      outline: 2px solid rgba(0,212,255,0.12);
+      outline: 2px solid rgba(0, 212, 255, 0.12);
       outline-offset: 2px;
     }
 
@@ -328,7 +393,7 @@
       color: var(--white);
       text-align: center;
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
       transition: color .15s ease, transform .12s;
     }
 
@@ -338,30 +403,61 @@
       transform: translateX(4px);
     }
 
-    .mobile-sheet-actions { margin-top: 1rem; display:flex; justify-content:center; gap:.6rem; }
+    .mobile-sheet-actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: .6rem;
+    }
 
-    body.nav-open .nav-toggle { color: var(--cyan); }
-    body.nav-open .nav-toggle .hamburger { background: transparent; }
-    body.nav-open .nav-toggle .hamburger::before { transform: rotate(45deg) translate(3px,3px); }
-    body.nav-open .nav-toggle .hamburger::after { transform: rotate(-45deg) translate(3px,-3px); }
+    body.nav-open .nav-toggle {
+      color: var(--cyan);
+    }
 
-.mobile { display: none !important; }
+    body.nav-open .nav-toggle .hamburger {
+      background: transparent;
+    }
+
+    body.nav-open .nav-toggle .hamburger::before {
+      transform: rotate(45deg) translate(3px, 3px);
+    }
+
+    body.nav-open .nav-toggle .hamburger::after {
+      transform: rotate(-45deg) translate(3px, -3px);
+    }
+
+    .mobile {
+      display: none !important;
+    }
 
     @media (max-width: 900px) {
-      .mobile { display: inline-flex !important; align-items:center; gap:.6rem; }
-      .nav-toggle { width:40px; height:40px; padding:.6rem; }
-      body.nav-open .nav-toggle { z-index: 260; }
+      .mobile {
+        display: inline-flex !important;
+        align-items: center;
+        gap: .6rem;
+      }
+
+      .nav-toggle {
+        width: 40px;
+        height: 40px;
+        padding: .6rem;
+      }
+
+      body.nav-open .nav-toggle {
+        z-index: 260;
+      }
     }
 
     .nav-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(2,6,23,0.55);
+      background: rgba(2, 6, 23, 0.55);
       opacity: 0;
       pointer-events: none;
       transition: opacity .22s;
       z-index: 180;
     }
+
     body.nav-open .nav-backdrop {
       opacity: 1;
       pointer-events: auto;
@@ -492,7 +588,7 @@
 
     .btn-primary {
       padding: .8rem 2rem;
-      background: linear-gradient(135deg,var(--cyan), #4dd8ff);
+      background: linear-gradient(135deg, var(--cyan), #4dd8ff);
       color: var(--bg);
       font-family: 'JetBrains Mono', monospace;
       font-size: .86rem;
@@ -502,12 +598,12 @@
       text-decoration: none;
       transition: transform .18s ease, box-shadow .18s ease;
       border-radius: 0;
-      box-shadow: 0 8px 30px rgba(0,212,255,0.07);
+      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.07);
     }
 
     .btn-primary:hover {
       transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,212,255,0.12);
+      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.12);
     }
 
     .btn-outline {
@@ -794,17 +890,34 @@
       transition: transform .4s;
     }
 
-    .skill-card.laravel::before { background: linear-gradient(90deg, #ef4444, transparent); }
-    .skill-card.filament::before { background: linear-gradient(90deg, var(--accent2), transparent); }
-    .skill-card.livewire::before { background: linear-gradient(90deg, #ec4899, transparent); }
-    .skill-card.flutter::before { background: linear-gradient(90deg, #60a5fa, transparent); }
-    .skill-card.mysql::before { background: linear-gradient(90deg, #4ade80, transparent); }
-    .skill-card.python::before { background: linear-gradient(90deg, #eab308, transparent); }
+    .skill-card.laravel::before {
+      background: linear-gradient(90deg, #ef4444, transparent);
+    }
+
+    .skill-card.filament::before {
+      background: linear-gradient(90deg, var(--accent2), transparent);
+    }
+
+    .skill-card.livewire::before {
+      background: linear-gradient(90deg, #ec4899, transparent);
+    }
+
+    .skill-card.flutter::before {
+      background: linear-gradient(90deg, #60a5fa, transparent);
+    }
+
+    .skill-card.mysql::before {
+      background: linear-gradient(90deg, #4ade80, transparent);
+    }
+
+    .skill-card.python::before {
+      background: linear-gradient(90deg, #eab308, transparent);
+    }
 
     .skill-card:hover {
       border-color: var(--cyan-dim);
       transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(2,6,23,0.45);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
     }
 
     .skill-card:hover::before {
@@ -813,33 +926,33 @@
 
     .project-card {
       transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-      box-shadow: 0 6px 14px rgba(2,6,23,0.12);
+      box-shadow: 0 6px 14px rgba(2, 6, 23, 0.12);
       border-radius: 0;
       overflow: hidden;
       background-clip: border-box;
-      border: 1px solid rgba(255,255,255,0.02);
+      border: 1px solid rgba(255, 255, 255, 0.02);
     }
 
     .project-card:hover {
-      border-color: rgba(0,212,255,0.08);
+      border-color: rgba(0, 212, 255, 0.08);
       transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(2,6,23,0.16);
+      box-shadow: 0 12px 28px rgba(2, 6, 23, 0.16);
     }
 
     .hero-card {
       border-radius: 0;
-      box-shadow: 0 8px 22px rgba(2,6,23,0.12);
+      box-shadow: 0 8px 22px rgba(2, 6, 23, 0.12);
     }
 
     .nav-cta {
       border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(2,6,23,0.25);
+      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.25);
       transition: transform .18s ease, box-shadow .18s ease;
     }
 
     .nav-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(2,6,23,0.35);
+      box-shadow: 0 14px 30px rgba(2, 6, 23, 0.35);
     }
 
     .skill-icon {
@@ -1026,7 +1139,7 @@
     }
 
     .project-img img {
-      transition: transform .45s cubic-bezier(.2,.8,.2,1);
+      transition: transform .45s cubic-bezier(.2, .8, .2, 1);
       will-change: transform;
     }
 
@@ -1040,12 +1153,14 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(2,6,23,0.75);
+      background: rgba(2, 6, 23, 0.75);
       z-index: 9999;
       padding: 2rem;
     }
 
-    .img-modal.open { display: flex; }
+    .img-modal.open {
+      display: flex;
+    }
 
     .img-modal-inner {
       position: relative;
@@ -1054,7 +1169,7 @@
       max-height: 88vh;
       border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(2,6,23,0.6);
+      box-shadow: 0 30px 80px rgba(2, 6, 23, 0.6);
       background: var(--surface);
     }
 
@@ -1071,7 +1186,7 @@
       position: absolute;
       top: 8px;
       right: 8px;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0, 0, 0, 0.35);
       border: none;
       color: var(--white);
       padding: .4rem .55rem;
@@ -1513,7 +1628,9 @@
         display: inline-flex;
       }
 
-      .theme-toggle.desktop { display: none !important; }
+      .theme-toggle.desktop {
+        display: none !important;
+      }
 
       .theme-toggle {
         display: inline-flex;
@@ -1542,6 +1659,7 @@
       .hero-name {
         font-size: clamp(1.6rem, 9vw, 3rem);
         text-align: left;
+        padding-top: 1rem;
       }
 
       .hero-card {
@@ -1587,12 +1705,14 @@
       </li>
     </ul>
 
-    <button id="themeToggle" class="theme-toggle desktop" aria-pressed="false" aria-label="Toggle color theme">☀️</button>
+    <button id="themeToggle" class="theme-toggle desktop" aria-pressed="false"
+      aria-label="Toggle color theme">☀️</button>
     <a href="#contact" class="nav-cta">Hire Me</a>
   </nav>
   <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
-  <div id="mobileSheet" class="mobile-sheet" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <div id="mobileSheet" class="mobile-sheet" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="Mobile menu">
     <div class="mobile-sheet-inner">
       <button class="mobile-sheet-close" aria-label="Close menu">✕</button>
       <nav class="mobile-sheet-nav" role="menu">
@@ -1640,8 +1760,8 @@
       <div class="card-label">// Tech Stack</div>
       <div class="tech-stack-item"><img src="images/laravel.png" alt="Laravel Framework" width="48" height="48">Laravel
         Framework</div>
-      <div class="tech-stack-item"><img src="images/filament.png" alt="FilamentPHP" width="48" height="48"
-          >FilamentPHP</div>
+      <div class="tech-stack-item"><img src="images/filament.png" alt="FilamentPHP" width="48" height="48">FilamentPHP
+      </div>
       <div class="tech-stack-item"><img src="images/livewire.png" alt="Livewire" width="48" height="48">Livewire</div>
       <div class="tech-stack-item"><img src="images/flutter.png" alt="Flutter / Dart" width="48" height="48">Flutter /
         Dart</div>
@@ -1659,10 +1779,12 @@
           <div class="section-line"></div>
           <p>I'm <strong>Hamza Mohammed</strong>, a backend developer and 4th-year Computer Science student at the
             <strong>College of Computer Science & Mathematics, University of Mosul</strong> — specialising in
-            Networking.</p>
+            Networking.
+          </p>
           <p>My focus is crafting robust server-side applications using the Laravel ecosystem. I design clean APIs,
             build powerful admin panels with <strong>FilamentPHP</strong>, create reactive interfaces with
-            <strong>Livewire</strong>, and extend to mobile with <strong>Flutter</strong>.</p>
+            <strong>Livewire</strong>, and extend to mobile with <strong>Flutter</strong>.
+          </p>
           <div class="about-info">
             <div class="info-item">
               <div class="info-key">Location</div>
@@ -1693,7 +1815,7 @@
       <div class="section-line reveal"></div>
       <div class="skills-grid">
         <div class="skill-card reveal laravel">
-          <img src="images/laravel.png" alt="Laravel" width="48" height="48">
+          <img src="images/laravel.png" alt="Laravel" width="48" height="48" loading="lazy" decoding="async">
           <div class="skill-name">Laravel</div>
           <div class="skill-desc">MVC, Eloquent ORM, Queues, Events, REST APIs, Sanctum</div>
           <div class="skill-bar-wrap">
@@ -1701,7 +1823,7 @@
           </div>
         </div>
         <div class="skill-card reveal filament">
-          <img src="images/filament.png" alt="FilamentPHP" width="48" height="48">
+          <img src="images/filament.png" alt="FilamentPHP" width="48" height="48" loading="lazy" decoding="async">
           <div class="skill-name">FilamentPHP</div>
           <div class="skill-desc">Admin panels, resources, forms, tables, widgets, plugins</div>
           <div class="skill-bar-wrap">
@@ -1709,7 +1831,7 @@
           </div>
         </div>
         <div class="skill-card reveal livewire">
-          <img src="images/livewire.png" alt="Livewire" width="48" height="48">
+          <img src="images/livewire.png" alt="Livewire" width="48" height="48" loading="lazy" decoding="async">
           <div class="skill-name">Livewire</div>
           <div class="skill-desc">Full-stack reactive components, real-time UI, SPA-like UX</div>
           <div class="skill-bar-wrap">
@@ -1717,7 +1839,7 @@
           </div>
         </div>
         <div class="skill-card reveal flutter">
-          <img src="images/flutter.png" alt="Flutter" width="48" height="48">
+          <img src="images/flutter.png" alt="Flutter" width="48" height="48" loading="lazy" decoding="async">
           <div class="skill-name">Flutter</div>
           <div class="skill-desc">Cross-platform mobile apps, state management, API integration</div>
           <div class="skill-bar-wrap">
@@ -1725,7 +1847,7 @@
           </div>
         </div>
         <div class="skill-card reveal mysql">
-          <img src="images/MySQL.png" alt="MySQL" width="80" height="68">
+          <img src="images/MySQL.png" alt="MySQL" width="80" height="68" loading="lazy" decoding="async">
           <div class="skill-name">MySQL</div>
           <div class="skill-desc">Schema design, query optimisation, migrations, relationships</div>
           <div class="skill-bar-wrap">
@@ -1733,7 +1855,7 @@
           </div>
         </div>
         <div class="skill-card reveal python">
-          <img src="images/Python.png" alt="Python" width="48" height="48">
+          <img src="images/Python.png" alt="Python" width="48" height="48" loading="lazy" decoding="async">
           <div class="skill-name">Python</div>
           <div class="skill-desc">Tkinter GUIs, Flask web apps, sockets, networking scripts</div>
           <div class="skill-bar-wrap">
@@ -1759,7 +1881,7 @@
 
         <div class="project-card reveal" data-tags="laravel">
           <div class="project-img has-img">
-            <img src="images/appointment-api.png" alt="Appointment API" />
+            <img src="images/appointment-api.png" alt="Appointment API" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1769,13 +1891,13 @@
             <span class="project-num">01</span>
             <div class="project-links">
               <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" class="project-link" title="GitHub"><svg
-                  viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
-              <a href="https://appointment-booking-management-a8c4bd5583b9.herokuapp.com" target="_blank" class="project-link"
-                title="Live Demo">
+              <a href="https://appointment-booking-management-a8c4bd5583b9.herokuapp.com" target="_blank"
+                rel="noopener noreferrer" class="project-link" title="Live Demo">
                 <svg viewBox="0 0 24 24">
                   <path d="M14 3v2H4v14h14v-7h2v9H2V3h12zm5 0h-4V1h6v6h-2V3.414l-8.293 8.293-1.414-1.414L19 3z" />
                 </svg>
@@ -1797,7 +1919,7 @@
 
         <div class="project-card reveal" data-tags="flutter">
           <div class="project-img has-img">
-            <img src="images/green-university-app.png" alt="Green University App" />
+            <img src="images/green-university-app.png" alt="Green University App" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1807,8 +1929,8 @@
             <span class="project-num">02</span>
             <div class="project-links">
               <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" class="project-link" title="GitHub"><svg
-                  viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -1825,7 +1947,7 @@
 
         <div class="project-card reveal" data-tags="laravel">
           <div class="project-img has-img">
-            <img src="images/green-university-api.png" alt="Green University API" />
+            <img src="images/green-university-api.png" alt="Green University API" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1835,13 +1957,13 @@
             <span class="project-num">03</span>
             <div class="project-links">
               <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" class="project-link" title="GitHub"><svg
-                  viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
-              <a href="https://green-university-1b6fca2a493a.herokuapp.com" target="_blank" class="project-link"
-                title="Live Demo">
+              <a href="https://green-university-1b6fca2a493a.herokuapp.com" target="_blank" rel="noopener noreferrer"
+                class="project-link" title="Live Demo">
                 <svg viewBox="0 0 24 24">
                   <path d="M14 3v2H4v14h14v-7h2v9H2V3h12zm5 0h-4V1h6v6h-2V3.414l-8.293 8.293-1.414-1.414L19 3z" />
                 </svg>
@@ -1852,14 +1974,14 @@
             <div class="project-title">Green University App API</div>
             <p class="project-desc">The Laravel backend powering the Green University Flutter app. FilamentPHP admin
               panel for data management and a clean REST API for mobile consumption.</p>
-            <div class="project-tags"><span class="tag red">Laravel</span><span class="tag orange">FilamentPHP</span><span
-                class="tag green">MySQL</span></div>
+            <div class="project-tags"><span class="tag red">Laravel</span><span
+                class="tag orange">FilamentPHP</span><span class="tag green">MySQL</span></div>
           </div>
         </div>
 
         <div class="project-card reveal" data-tags="laravel">
           <div class="project-img has-img">
-            <img src="images/my-blog.png" alt="Personal Blog" />
+            <img src="images/my-blog.png" alt="Personal Blog" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1869,8 +1991,8 @@
             <span class="project-num">04</span>
             <div class="project-links">
               <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" class="project-link" title="GitHub"><svg
-                  viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -1881,13 +2003,14 @@
             <p class="project-desc">Personal technical blog built with Laravel, Livewire, and Tailwind CSS. Managed via
               FilamentPHP admin panel with Markdown support and SEO-friendly slugs, authenticated with Google.</p>
             <div class="project-tags"><span class="tag red">Laravel</span><span class="tag pink">Livewire</span><span
-                class="tag orange">FilamentPHP</span><span class="tag blue">Tailwind</span><span class="tag green">Google Auth</span></div>
+                class="tag orange">FilamentPHP</span><span class="tag blue">Tailwind</span><span
+                class="tag green">Google Auth</span></div>
           </div>
         </div>
 
         <div class="project-card reveal" data-tags="python">
           <div class="project-img has-img">
-            <img src="images/prayer-times.png" alt="Prayer Times App" />
+            <img src="images/prayer-times.png" alt="Prayer Times App" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1914,7 +2037,7 @@
 
         <div class="project-card reveal" data-tags="laravel">
           <div class="project-img has-img">
-            <img src="images/blog-api.png" alt="Blog API" />
+            <img src="images/blog-api.png" alt="Blog API" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1924,8 +2047,8 @@
             <span class="project-num">06</span>
             <div class="project-links">
               <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" class="project-link" title="GitHub"><svg
-                  viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -1935,14 +2058,14 @@
             <div class="project-title">Blog API</div>
             <p class="project-desc">RESTful API backend for a blog platform with a FilamentPHP-powered admin dashboard.
               Posts, categories, tags, and full content management.</p>
-            <div class="project-tags"><span class="tag red">Laravel</span><span class="tag orange">FilamentPHP</span><span
-                class="tag green">MySQL</span></div>
+            <div class="project-tags"><span class="tag red">Laravel</span><span
+                class="tag orange">FilamentPHP</span><span class="tag green">MySQL</span></div>
           </div>
         </div>
 
         <div class="project-card reveal" data-tags="python">
           <div class="project-img has-img">
-            <img src="images/csam.png" alt="Teachers Evaluation" />
+            <img src="images/csam.png" alt="Teachers Evaluation" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1953,7 +2076,7 @@
             <div class="project-links">
               <span class="private-badge">Private</span>
               <a href="https://github.com/hamza200411/CSAM-College-Project-Teachers-Evaluation" target="_blank"
-                class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
+                rel="noopener noreferrer" class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -1970,7 +2093,7 @@
 
         <div class="project-card reveal" data-tags="python">
           <div class="project-img has-img">
-            <img src="images/text-editor.png" alt="Text Editor" />
+            <img src="images/text-editor.png" alt="Text Editor" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -1979,8 +2102,8 @@
           <div class="project-top">
             <span class="project-num">08</span>
             <div class="project-links">
-              <a href="https://github.com/hamza200411/Text-Editor-Project" target="_blank" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411/Text-Editor-Project" target="_blank" rel="noopener noreferrer"
+                class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -1997,7 +2120,7 @@
 
         <div class="project-card reveal" data-tags="python">
           <div class="project-img has-img">
-            <img src="images/chatroom.png" alt="Chat Room App" />
+            <img src="images/chatroom.png" alt="Chat Room App" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -2006,8 +2129,8 @@
           <div class="project-top">
             <span class="project-num">09</span>
             <div class="project-links">
-              <a href="https://github.com/hamza200411/Chat-Room-App" target="_blank" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411/Chat-Room-App" target="_blank" rel="noopener noreferrer"
+                class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -2023,7 +2146,8 @@
 
         <div class="project-card reveal" data-tags="python">
           <div class="project-img has-img">
-            <img src="images/network-monitoring.png" alt="Network Monitoring Dashboard" />
+            <img src="images/network-monitoring.png" alt="Network Monitoring Dashboard" loading="lazy"
+              decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -2033,7 +2157,7 @@
             <span class="project-num">10</span>
             <div class="project-links">
               <a href="https://github.com/hamza200411/Simple-Network-Monitoring-Dashboard" target="_blank"
-                class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
+                rel="noopener noreferrer" class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -2050,7 +2174,7 @@
 
         <div class="project-card reveal" data-tags="laravel">
           <div class="project-img has-img">
-            <img src="images/ideas.png" alt="IDEAS Social Platform" />
+            <img src="images/ideas.png" alt="IDEAS Social Platform" loading="lazy" decoding="async" />
             <div class="project-img-overlay"
               style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
             </div>
@@ -2060,8 +2184,8 @@
             <span class="project-num">11</span>
             <div class="project-links">
               <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" class="project-link" title="GitHub"><svg
-                  viewBox="0 0 24 24">
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                title="GitHub"><svg viewBox="0 0 24 24">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                 </svg></a>
@@ -2097,14 +2221,15 @@
               </svg>
               <div><span class="cl-label">Email</span><span class="cl-val">hamza.mohammed.200411@gmail.com</span></div>
             </a>
-            <a href="https://github.com/hamza200411" target="_blank" class="contact-link">
+            <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="contact-link">
               <svg viewBox="0 0 24 24">
                 <path
                   d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
               </svg>
               <div><span class="cl-label">GitHub</span><span class="cl-val">github.com/hamza200411</span></div>
             </a>
-            <a href="https://www.linkedin.com/in/hamza-mohammed-hashem-3634722a9" target="_blank" class="contact-link">
+            <a href="https://www.linkedin.com/in/hamza-mohammed-hashem-3634722a9" target="_blank"
+              rel="noopener noreferrer" class="contact-link">
               <svg viewBox="0 0 24 24">
                 <path
                   d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -2209,7 +2334,7 @@
     window.addEventListener('scroll', updateNavAndHeader);
     updateNavAndHeader();
 
-    (function() {
+    (function () {
       const modal = document.createElement('div');
       modal.className = 'img-modal';
       modal.setAttribute('aria-hidden', 'true');
@@ -2397,6 +2522,15 @@
         updateThemeButtons();
       }));
     }
+
+    document.querySelectorAll('a[target="_blank"]').forEach(a => {
+      if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    document.querySelectorAll('.project-img img, .skills-grid img').forEach(img => {
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
   </script>
 </body>
 
