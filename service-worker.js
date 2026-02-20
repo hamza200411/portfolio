@@ -1,8 +1,8 @@
+const ONE_YEAR = 31536000;
 const CACHE_NAME = 'portfolio-cache-v1';
 const ASSETS = [
   '/',
   '/index.html',
-  '/offline.html',
   '/images/green-university-app.png',
   '/images/favicon-96x96.png',
   '/images/favicon.svg',
@@ -63,9 +63,16 @@ self.addEventListener('fetch', event => {
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).then(fetchResp => {
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, fetchResp.clone()));
+        const modified = fetchResp.clone();
+        const headers = new Headers(modified.headers);
+        headers.set('Cache-Control', `public, max-age=${ONE_YEAR}, immutable`);
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, new Response(modified.body, {
+          status: modified.status,
+          statusText: modified.statusText,
+          headers
+        })));
         return fetchResp;
-      }).catch(() => caches.match('/offline.html'))
+      }).catch(() => caches.match('/index.html'))
     );
     return;
   }
@@ -75,7 +82,14 @@ self.addEventListener('fetch', event => {
       return resp || fetch(event.request).then(fetchResp => {
         return caches.open(CACHE_NAME).then(cache => {
           if (event.request.method === 'GET' && fetchResp && fetchResp.status === 200) {
-            cache.put(event.request, fetchResp.clone());
+            const modified = fetchResp.clone();
+            const headers = new Headers(modified.headers);
+            headers.set('Cache-Control', `public, max-age=${ONE_YEAR}, immutable`);
+            cache.put(event.request, new Response(modified.body, {
+              status: modified.status,
+              statusText: modified.statusText,
+              headers
+            }));
           }
           return fetchResp;
         });
@@ -84,5 +98,4 @@ self.addEventListener('fetch', event => {
       return caches.match('/index.html');
     })
   );
-
 });
