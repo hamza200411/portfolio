@@ -8,6 +8,8 @@
 
   <meta name="description"
     content="Hamza Mohammed — Backend developer. 4th‑year Computer Science student building scalable Laravel backends, Filament admin panels, and Flutter apps.">
+  <meta name="keywords"
+    content="Hamza Mohammed, backend developer, Laravel, FilamentPHP, Flutter, PHP, MySQL, CS student">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://hamza-mohammed.me">
   <meta property="og:title" content="Hamza Mohammed — Backend Developer">
@@ -16,7 +18,9 @@
   <meta property="og:image" content="images/green-university-app.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hamza-mohammed.me">
+  <meta property="og:site_name" content="Hamza Mohammed Portfolio">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hmzamohamed">
   <meta name="theme-color" content="#040a12">
   <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
@@ -54,10 +58,19 @@
   }
   </script>
 
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
+  <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
-    rel="stylesheet" />
+    as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet" />
+  </noscript>
+  <link rel="preload" as="image" href="images/green-university-app.png">
+  <link rel="preload" as="image" href="images/filament-dashboard.png">
+
   <style>
     *,
     *::before,
@@ -79,7 +92,14 @@
       --muted: #4a6b85;
       --white: #e8f4ff;
       --accent2: #ff6b35;
+
+
+      --nav-bg: rgba(4, 10, 18, 0.82);
+      --nav-border: rgba(17, 34, 54, 0.9);
+      --nav-height: 68px;
+      --nav-scrolled-height: 52px;
     }
+
 
     .light-theme {
       --bg: #f8fafc;
@@ -93,27 +113,11 @@
       --muted: #475569;
       --white: #061426;
       --accent2: #ff6b35;
+
+      --nav-bg: rgba(248, 250, 252, 0.88);
+      --nav-border: rgba(230, 238, 246, 0.95);
     }
 
-    .light-theme nav {
-      background: rgba(255, 255, 255, 0.88);
-      border-bottom-color: rgba(2, 6, 23, 0.06);
-    }
-
-    .light-theme .nav-links a {
-      color: var(--muted);
-    }
-
-    .light-theme body.nav-open .nav-links {
-      background: rgba(255, 255, 255, 0.98);
-      border-color: rgba(2, 6, 23, 0.06);
-      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.04);
-      color: var(--text);
-    }
-
-    .light-theme body.scrolled nav {
-      box-shadow: 0 6px 24px rgba(2, 6, 23, 0.04);
-    }
 
     html {
       scroll-behavior: smooth;
@@ -126,342 +130,728 @@
       overflow-x: hidden;
     }
 
-
-
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
       background-size: 60px 60px;
       opacity: .35;
       z-index: 0;
       pointer-events: none;
     }
 
-    nav {
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skip-link:focus {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      background: var(--surface);
+      padding: 0.5rem 1rem;
+      z-index: 9999;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-decoration: none;
+    }
+
+
+    .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 500;
+      height: var(--nav-height);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 1.1rem 4rem;
-      background: rgba(4, 10, 18, .75);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      transition: padding .22s ease, background .22s ease, box-shadow .22s ease, border-color .22s ease;
+      padding: 0 3.5rem;
+      gap: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--nav-border);
+      transition:
+        height 0.25s ease,
+        padding 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
-    .nav-logo {
-      transition: transform .22s ease, font-size .22s ease;
+
+    body.scrolled .navbar {
+      height: var(--nav-scrolled-height);
+      padding: 0 3rem;
+      background: var(--nav-bg);
+      box-shadow: 0 4px 32px rgba(2, 6, 23, 0.18);
+      border-bottom-color: transparent;
     }
 
-    body.scrolled nav {
-      padding: .5rem 2.5rem;
-      background: rgba(4, 10, 18, .95);
-      box-shadow: 0 6px 24px rgba(2, 6, 23, 0.08);
-      border-bottom-color: rgba(255, 255, 255, 0.03);
+
+    .light-theme body.scrolled .navbar {
+      box-shadow: 0 4px 32px rgba(2, 6, 23, 0.06);
     }
 
-    body.scrolled .nav-logo {
-      transform: translateY(-2px);
-      font-size: .8rem;
+
+    .navbar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--cyan) 30%, transparent 100%);
+      opacity: 0.55;
+      pointer-events: none;
     }
+
 
     .nav-logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: .85rem;
+      font-size: .88rem;
       font-weight: 500;
       color: var(--cyan);
       letter-spacing: .08em;
       text-decoration: none;
-    }
-
-    .nav-logo span {
-      color: var(--muted);
-    }
-
-    .nav-links {
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
       display: flex;
-      gap: 2.5rem;
-      list-style: none;
+      align-items: center;
+      gap: .3rem;
     }
 
-    .nav-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+    .nav-logo:hover {
+      opacity: 0.8;
+    }
+
+    .nav-logo .logo-slash {
       color: var(--muted);
-      text-decoration: none;
-      transition: color .25s;
+    }
+
+    .nav-logo .logo-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--cyan);
+      margin-left: 1px;
+      animation: cursorBlink 1.1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes cursorBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+
+    .nav-links-desktop {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      margin-left: 3rem;
+      flex: 1;
+    }
+
+    .nav-links-desktop li {
       position: relative;
     }
 
-    .nav-links a::after {
+    .nav-links-desktop a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: .55rem .9rem;
+      display: block;
+      transition: color 0.22s ease;
+      position: relative;
+    }
+
+
+    .nav-links-desktop a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: calc(100% - 1.8rem);
       height: 1px;
       background: var(--cyan);
-      transition: width .3s;
+      transition: transform 0.28s cubic-bezier(.4, 0, .2, 1);
+      transform-origin: center;
     }
 
-    .nav-links a:hover {
+    .nav-links-desktop a:hover {
       color: var(--cyan);
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    .nav-links-desktop a:hover::after,
+    .nav-links-desktop a.active::after {
+      transform: translateX(-50%) scaleX(1);
     }
 
-    .nav-cta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .75rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .5rem 1.3rem;
-      border: 1px solid var(--cyan);
+    .nav-links-desktop a.active {
       color: var(--cyan);
+    }
+
+
+    .nav-links-desktop a .nav-num {
+      font-size: .6rem;
+      color: var(--cyan);
+      opacity: 0;
+      margin-right: .3rem;
+      transition: opacity 0.18s;
+    }
+
+    .nav-links-desktop a:hover .nav-num,
+    .nav-links-desktop a.active .nav-num {
+      opacity: 1;
+    }
+
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+
+    .nav-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      height: 34px;
+      padding: 0 .85rem;
+      border: 1px solid var(--border);
       background: transparent;
-      text-decoration: none;
-      transition: background .25s, color .25s;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-radius: 0;
+      transition:
+        border-color 0.22s ease,
+        color 0.22s ease,
+        background 0.22s ease;
+      white-space: nowrap;
+      user-select: none;
     }
 
-    .nav-cta:hover {
+    .nav-theme-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-glow);
+    }
+
+
+    .nav-theme-btn .theme-icon {
+      font-size: .85rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      transition: transform 0.35s ease;
+    }
+
+    .nav-theme-btn:hover .theme-icon {
+      transform: rotate(20deg);
+    }
+
+
+    .nav-hire-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      padding: 0 1.3rem;
+      border: 1px solid var(--cyan);
+      background: transparent;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition:
+        background 0.22s ease,
+        color 0.22s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .nav-hire-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
       background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s cubic-bezier(.4, 0, .2, 1);
+      z-index: 0;
+    }
+
+    .nav-hire-btn span {
+      position: relative;
+      z-index: 1;
+      transition: color 0.18s;
+    }
+
+    .nav-hire-btn:hover::before {
+      transform: scaleX(1);
+    }
+
+    .nav-hire-btn:hover span {
       color: var(--bg);
     }
 
-    .theme-toggle {
-      display: inline-flex;
+    .nav-hire-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.18);
+    }
+
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: .4rem;
-      padding: .35rem .6rem;
-      border-radius: 0;
+      width: 40px;
+      height: 40px;
       border: 1px solid var(--border);
       background: transparent;
-      color: var(--muted);
       cursor: pointer;
-      font-size: .9rem;
-      transition: background .2s, color .2s, border-color .2s;
+      gap: 5px;
+      border-radius: 0;
+      transition: border-color 0.22s;
+      flex-shrink: 0;
     }
 
-    .theme-toggle:hover {
+    .nav-hamburger:hover {
       border-color: var(--cyan);
-      color: var(--cyan);
-      background: var(--surface);
     }
 
-    .nav-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: .4rem;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    .nav-toggle .hamburger,
-    .nav-toggle .hamburger::before,
-    .nav-toggle .hamburger::after {
+    .nav-hamburger .bar {
       display: block;
       width: 18px;
-      height: 2px;
-      background: currentColor;
-      border-radius: 2px;
-      position: relative;
-      transition: transform .25s ease, opacity .2s ease;
+      height: 1.5px;
+      background: var(--muted);
+      border-radius: 0;
+      transition:
+        transform 0.28s cubic-bezier(.4, 0, .2, 1),
+        opacity 0.2s ease,
+        background 0.22s ease;
     }
 
-    .nav-toggle .hamburger::before,
-    .nav-toggle .hamburger::after {
+    .nav-hamburger:hover .bar {
+      background: var(--cyan);
+    }
+
+
+    body.menu-open .nav-hamburger .bar:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+      background: var(--cyan);
+    }
+
+    body.menu-open .nav-hamburger .bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    body.menu-open .nav-hamburger .bar:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+      background: var(--cyan);
+    }
+
+    body.menu-open .nav-hamburger {
+      border-color: var(--cyan);
+    }
+
+
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 490;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+
+      background: rgba(4, 10, 18, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+
+      transition:
+        opacity 0.32s cubic-bezier(.4, 0, .2, 1),
+        visibility 0.32s;
+    }
+
+
+    .light-theme .mobile-menu-overlay {
+      background: rgba(248, 250, 252, 0.97);
+    }
+
+
+    body.menu-open .mobile-menu-overlay {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+
+    .mobile-menu-overlay::before {
       content: '';
       position: absolute;
-      left: 0;
-    }
-
-    .nav-toggle .hamburger::before {
-      top: -6px;
-    }
-
-    .nav-toggle .hamburger::after {
-      top: 6px;
-    }
-
-    body.nav-open .nav-toggle {
-      color: var(--cyan);
-    }
-
-    body.nav-open .nav-toggle .hamburger {
-      background: transparent;
-    }
-
-    body.nav-open .nav-toggle .hamburger::before {
-      transform: rotate(45deg) translate(3px, 3px);
-    }
-
-    body.nav-open .nav-toggle .hamburger::after {
-      transform: rotate(-45deg) translate(3px, -3px);
-    }
-
-    .mobile-sheet {
-      position: fixed;
       inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(2, 6, 23, 0.9);
-      z-index: 400;
-      padding: 2rem;
-      transition: opacity .22s ease, transform .28s cubic-bezier(.2, .9, .2, 1);
-      opacity: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.2;
       pointer-events: none;
-      -webkit-tap-highlight-color: transparent;
     }
 
-    .mobile-sheet.open {
-      display: flex;
-      opacity: 1;
-      pointer-events: auto;
-    }
 
-    .mobile-sheet-inner {
-      width: 100%;
-      max-width: 520px;
-      background: transparent;
-      color: var(--white);
-      text-align: center;
-      position: relative;
-      padding: 2.4rem 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .mobile-sheet-close {
+    .mobile-menu-overlay::after {
+      content: '';
       position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 44px;
-      height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      color: var(--white);
-      font-size: 1.05rem;
-      border-radius: 6px;
-      cursor: pointer;
-      z-index: 410;
-      transition: background .14s, color .12s, transform .08s;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .mobile-sheet-close:focus,
-    .mobile-sheet-close:hover {
-      background: rgba(0, 0, 0, 0.25);
-      color: var(--cyan);
-      transform: translateY(-1px);
-      outline: 2px solid rgba(0, 212, 255, 0.12);
-      outline-offset: 2px;
-    }
 
-    .mobile-sheet-nav {
+    .mobile-menu-inner {
+      position: relative;
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      gap: .5rem;
       align-items: center;
-      width: 100%;
-    }
-
-    .mobile-sheet-nav a {
-      display: block;
+      gap: 0;
       width: 100%;
       max-width: 420px;
-      box-sizing: border-box;
-      font-size: 1.15rem;
-      padding: 1rem 0;
-      color: var(--white);
-      text-align: center;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      transition: color .15s ease, transform .12s;
+      padding: 0 2rem;
     }
 
-    .mobile-sheet-nav a:focus,
-    .mobile-sheet-nav a:hover {
-      color: var(--cyan);
-      transform: translateX(4px);
-    }
 
-    .mobile-sheet-actions {
-      margin-top: 1rem;
+    .mobile-menu-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
       display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .mobile-menu-header::before,
+    .mobile-menu-header::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--border);
+    }
+
+
+    .mobile-menu-links {
+      list-style: none;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .mobile-menu-links li {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+
+
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 0.32s ease,
+        transform 0.32s ease;
+    }
+
+    body.menu-open .mobile-menu-links li:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.07s;
+    }
+
+    body.menu-open .mobile-menu-links li:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.12s;
+    }
+
+    body.menu-open .mobile-menu-links li:nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.17s;
+    }
+
+    body.menu-open .mobile-menu-links li:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.22s;
+    }
+
+    .mobile-menu-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 1.25rem 1rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--text);
+      text-decoration: none;
+      text-align: center;
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        padding-left 0.2s ease;
+    }
+
+    .mobile-menu-links a .link-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      color: var(--muted);
+      opacity: 0.6;
+      transition: color 0.2s;
+      align-self: center;
+      padding-top: .15rem;
+    }
+
+    .mobile-menu-links a:hover,
+    .mobile-menu-links a:focus {
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      padding-left: 1.5rem;
+      outline: none;
+    }
+
+    .mobile-menu-links a:hover .link-num {
+      color: var(--cyan);
+      opacity: 1;
+    }
+
+
+    .mobile-menu-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .8rem;
+      margin-top: 2rem;
+      width: 100%;
+
+
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 0.32s ease 0.27s,
+        transform 0.32s ease 0.27s;
+    }
+
+    body.menu-open .mobile-menu-actions {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    .mobile-hire-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 52px;
+      border: 1px solid var(--cyan);
+      background: transparent;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition:
+        background 0.22s ease,
+        color 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mobile-hire-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .mobile-hire-btn span {
+      position: relative;
+      z-index: 1;
+      transition: color 0.18s;
+    }
+
+    .mobile-hire-btn:hover::before,
+    .mobile-hire-btn:focus::before {
+      transform: scaleX(1);
+    }
+
+    .mobile-hire-btn:hover span,
+    .mobile-hire-btn:focus span {
+      color: var(--bg);
+    }
+
+
+    .mobile-theme-btn {
+      display: flex;
+      align-items: center;
       justify-content: center;
       gap: .6rem;
-    }
-
-    body.nav-open .nav-toggle {
-      color: var(--cyan);
-    }
-
-    body.nav-open .nav-toggle .hamburger {
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--border);
       background: transparent;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition:
+        border-color 0.22s,
+        color 0.22s,
+        background 0.22s;
     }
 
-    body.nav-open .nav-toggle .hamburger::before {
-      transform: rotate(45deg) translate(3px, 3px);
+    .mobile-theme-btn:hover,
+    .mobile-theme-btn:focus {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      outline: none;
     }
 
-    body.nav-open .nav-toggle .hamburger::after {
-      transform: rotate(-45deg) translate(3px, -3px);
+    .mobile-theme-btn .theme-icon {
+      font-size: .95rem;
+      line-height: 1;
     }
 
-    .mobile {
-      display: none !important;
-    }
 
-    @media (max-width: 900px) {
-      .mobile {
-        display: inline-flex !important;
-        align-items: center;
-        gap: .6rem;
-      }
+    .mobile-menu-footer {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .14em;
+      color: var(--muted);
+      margin-top: 1.6rem;
+      opacity: 0.5;
+      text-transform: uppercase;
 
-      .nav-toggle {
-        width: 40px;
-        height: 40px;
-        padding: .6rem;
-      }
-
-      body.nav-open .nav-toggle {
-        z-index: 260;
-      }
-    }
-
-    .nav-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 23, 0.55);
       opacity: 0;
-      pointer-events: none;
-      transition: opacity .22s;
-      z-index: 180;
+      transition: opacity 0.3s ease 0.35s;
     }
 
-    body.nav-open .nav-backdrop {
-      opacity: 1;
-      pointer-events: auto;
+    body.menu-open .mobile-menu-footer {
+      opacity: 0.4;
     }
+
+
+    @media (max-width: 960px) {
+
+      .nav-links-desktop {
+        display: none;
+      }
+
+
+      .nav-right {
+        display: none;
+      }
+
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+
+      .navbar {
+        padding: 0 1.5rem;
+        justify-content: space-between;
+      }
+
+      body.scrolled .navbar {
+        padding: 0 1.5rem;
+      }
+    }
+
+
+    @media (max-width: 480px) {
+      .mobile-menu-links a {
+        font-size: 1.25rem;
+      }
+    }
+
 
     #hero {
       position: relative;
@@ -470,6 +860,7 @@
       display: flex;
       align-items: center;
       padding: 0 4rem;
+      padding-top: var(--nav-height);
       overflow: hidden;
     }
 
@@ -502,12 +893,12 @@
       0%,
       100% {
         transform: scale(1);
-        opacity: 1
+        opacity: 1;
       }
 
       50% {
         transform: scale(1.1);
-        opacity: .7
+        opacity: .7;
       }
     }
 
@@ -664,6 +1055,8 @@
       padding: 1.5rem;
       opacity: 0;
       animation: fadeLeft .8s 1.1s forwards;
+      border-radius: 0;
+      box-shadow: 0 8px 22px rgba(2, 6, 23, 0.12);
     }
 
     .hero-card::before {
@@ -713,6 +1106,7 @@
       box-shadow: 0 0 6px var(--accent2);
     }
 
+
     section {
       position: relative;
       z-index: 1;
@@ -755,6 +1149,7 @@
       margin-top: 1.2rem;
       margin-bottom: 2.5rem;
     }
+
 
     #about {
       background: var(--bg2);
@@ -862,6 +1257,7 @@
       color: var(--muted);
     }
 
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -875,6 +1271,7 @@
       position: relative;
       overflow: hidden;
       transition: border-color .3s, transform .3s;
+      border-radius: 0;
     }
 
     .skill-card::before {
@@ -924,58 +1321,11 @@
       transform: scaleX(1);
     }
 
-    .project-card {
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-      box-shadow: 0 6px 14px rgba(2, 6, 23, 0.12);
-      border-radius: 0;
-      overflow: hidden;
-      background-clip: border-box;
-      border: 1px solid rgba(255, 255, 255, 0.02);
-    }
-
-    .project-card:hover {
-      border-color: rgba(0, 212, 255, 0.08);
-      transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(2, 6, 23, 0.16);
-    }
-
-    .hero-card {
-      border-radius: 0;
-      box-shadow: 0 8px 22px rgba(2, 6, 23, 0.12);
-    }
-
-    .nav-cta {
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.25);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(2, 6, 23, 0.35);
-    }
-
-    .skill-icon {
-      width: 44px;
-      height: 44px;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--cyan-glow);
-      border: 1px solid var(--cyan-dim);
-    }
-
-    .skill-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--cyan);
-    }
-
     .skill-name {
       font-size: 1rem;
       font-weight: 700;
       color: var(--white);
+      margin-top: .8rem;
       margin-bottom: .4rem;
     }
 
@@ -1000,6 +1350,7 @@
       box-shadow: 0 0 8px var(--cyan);
     }
 
+
     #projects {
       background: var(--bg2);
     }
@@ -1022,6 +1373,7 @@
       background: transparent;
       cursor: pointer;
       transition: border-color .25s, color .25s, background .25s;
+      border-radius: 0;
     }
 
     .filter-btn:hover,
@@ -1042,14 +1394,16 @@
       border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
-      transition: border-color .3s, transform .3s;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
       display: flex;
       flex-direction: column;
+      border-radius: 0;
     }
 
     .project-card:hover {
       border-color: var(--cyan-dim);
       transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(2, 6, 23, 0.16);
     }
 
     .project-card.hidden {
@@ -1075,45 +1429,13 @@
       object-fit: cover;
       object-position: center;
       display: block;
+      transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+      will-change: transform;
+      cursor: zoom-in;
     }
 
-    .project-img-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
-    }
-
-    .project-img-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 20px 20px;
-      opacity: .5;
-    }
-
-    .project-img-icon {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .6rem;
-    }
-
-    .project-img-icon svg {
-      width: 36px;
-      height: 36px;
-      fill: var(--cyan);
-      opacity: .8;
-      filter: drop-shadow(0 0 12px rgba(0, 212, 255, .4));
-    }
-
-    .project-img-icon span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .project-card:hover .project-img img {
+      transform: scale(1.02);
     }
 
     .project-img-line {
@@ -1128,79 +1450,6 @@
 
     .project-card:hover .project-img-line {
       width: 100%;
-    }
-
-    .project-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 120%, rgba(0, 212, 255, .04) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .project-img img {
-      transition: transform .45s cubic-bezier(.2, .8, .2, 1);
-      will-change: transform;
-    }
-
-    .project-card:hover .project-img img {
-      transform: scale(1.02);
-    }
-
-    .img-modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(2, 6, 23, 0.75);
-      z-index: 9999;
-      padding: 2rem;
-    }
-
-    .img-modal.open {
-      display: flex;
-    }
-
-    .img-modal-inner {
-      position: relative;
-      max-width: 1100px;
-      width: 100%;
-      max-height: 88vh;
-      border-radius: 0;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(2, 6, 23, 0.6);
-      background: var(--surface);
-    }
-
-    .img-modal-inner img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 88vh;
-      object-fit: contain;
-      background: var(--bg);
-    }
-
-    .img-modal-close {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0, 0, 0, 0.35);
-      border: none;
-      color: var(--white);
-      padding: .4rem .55rem;
-      border-radius: 0;
-      cursor: pointer;
-      font-size: 1.05rem;
-      line-height: 1;
-    }
-
-    .img-modal-caption {
-      padding: .6rem .85rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .85rem;
-      color: var(--muted);
     }
 
     .project-top {
@@ -1234,6 +1483,7 @@
       color: var(--muted);
       text-decoration: none;
       transition: border-color .25s, color .25s;
+      border-radius: 0;
     }
 
     .project-link:hover {
@@ -1294,6 +1544,7 @@
       background: var(--cyan-glow);
       border: 1px solid var(--cyan-dim);
       color: var(--cyan);
+      border-radius: 0;
     }
 
     .tag.orange {
@@ -1337,6 +1588,64 @@
       border-color: rgba(234, 179, 8, .3);
       color: #eab308;
     }
+
+
+    .img-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(2, 6, 23, 0.75);
+      z-index: 9999;
+      padding: 2rem;
+    }
+
+    .img-modal.open {
+      display: flex;
+    }
+
+    .img-modal-inner {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      max-height: 88vh;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(2, 6, 23, 0.6);
+      background: var(--surface);
+    }
+
+    .img-modal-inner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 88vh;
+      object-fit: contain;
+      background: var(--bg);
+    }
+
+    .img-modal-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      border: none;
+      color: var(--white);
+      padding: .4rem .55rem;
+      border-radius: 0;
+      cursor: pointer;
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .img-modal-caption {
+      padding: .6rem .85rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
 
     .contact-grid {
       display: grid;
@@ -1447,11 +1756,11 @@
 
       0%,
       100% {
-        opacity: 1
+        opacity: 1;
       }
 
       50% {
-        opacity: .3
+        opacity: .3;
       }
     }
 
@@ -1532,6 +1841,7 @@
       margin-top: .1rem;
     }
 
+
     footer {
       position: relative;
       z-index: 1;
@@ -1568,15 +1878,16 @@
       color: var(--cyan);
     }
 
+
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(24px)
+        transform: translateY(24px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0)
+        transform: translateY(0);
       }
     }
 
@@ -1603,6 +1914,7 @@
       transform: translateY(0);
     }
 
+
     ::-webkit-scrollbar {
       width: 4px;
     }
@@ -1619,34 +1931,15 @@
       background: var(--cyan);
     }
 
+
     @media (max-width: 900px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-
-      .nav-toggle {
-        display: inline-flex;
-      }
-
-      .theme-toggle.desktop {
-        display: none !important;
-      }
-
-      .theme-toggle {
-        display: inline-flex;
-        margin-left: .4rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
       .section-inner {
         padding: 4rem 1.5rem;
       }
 
       #hero {
         padding: 0 1.5rem;
+        padding-top: var(--nav-height);
         flex-direction: column;
         align-items: flex-start;
         gap: 1.25rem;
@@ -1688,665 +1981,1018 @@
 
 <body>
 
-  <nav role="navigation" aria-label="Primary navigation">
-    <a href="#hero" class="nav-logo"><span>// </span>hamza.dev</a>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
-      <span class="hamburger" aria-hidden="true"></span>
-    </button>
 
-    <ul class="nav-links" id="navMenu" role="menu" aria-hidden="true">
-      <li role="none"><a role="menuitem" href="#about">About</a></li>
-      <li role="none"><a role="menuitem" href="#skills">Skills</a></li>
-      <li role="none"><a role="menuitem" href="#projects">Projects</a></li>
-      <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
-      <li class="mobile-actions" role="none">
-        <button class="theme-toggle mobile" aria-pressed="false" aria-label="Toggle color theme">☀️</button>
+  <nav class="navbar" role="navigation" aria-label="Primary navigation">
+
+
+    <a href="#hero" class="nav-logo" aria-label="Hamza Mohammed — home">
+      <span class="logo-slash">// </span>hamza.dev<span class="logo-cursor" aria-hidden="true"></span>
+    </a>
+
+
+    <ul class="nav-links-desktop" id="desktopNavLinks" role="menubar" aria-label="Site sections">
+      <li role="none"><a href="#about" role="menuitem" data-section="about"><span class="nav-num">01.</span>About</a>
       </li>
+      <li role="none"><a href="#skills" role="menuitem" data-section="skills"><span class="nav-num">02.</span>Skills</a>
+      </li>
+      <li role="none"><a href="#projects" role="menuitem" data-section="projects"><span
+            class="nav-num">03.</span>Projects</a></li>
+      <li role="none"><a href="#contact" role="menuitem" data-section="contact"><span
+            class="nav-num">04.</span>Contact</a></li>
     </ul>
 
-    <button id="themeToggle" class="theme-toggle desktop" aria-pressed="false"
-      aria-label="Toggle color theme">☀️</button>
-    <a href="#contact" class="nav-cta">Hire Me</a>
-  </nav>
-  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
-  <div id="mobileSheet" class="mobile-sheet" aria-hidden="true" role="dialog" aria-modal="true"
-    aria-label="Mobile menu">
-    <div class="mobile-sheet-inner">
-      <button class="mobile-sheet-close" aria-label="Close menu">✕</button>
-      <nav class="mobile-sheet-nav" role="menu">
-        <a role="menuitem" href="#about">About</a>
-        <a role="menuitem" href="#skills">Skills</a>
-        <a role="menuitem" href="#projects">Projects</a>
-        <a role="menuitem" href="#contact">Contact</a>
-        <div class="mobile-sheet-actions">
-          <button class="theme-toggle mobile" aria-pressed="false" aria-label="Toggle color theme">☀️</button>
-        </div>
-      </nav>
+    <div class="nav-right" aria-label="Navigation actions">
+      <button class="nav-theme-btn js-theme-toggle" aria-pressed="false" aria-label="Switch to light mode"
+        title="Toggle color theme">
+        <span class="theme-icon" aria-hidden="true">☀️</span>
+        <span class="theme-label">Light</span>
+      </button>
+
+      <a href="#contact" class="nav-hire-btn" aria-label="Hire Hamza Mohammed">
+        <span>Hire Me</span>
+      </a>
+    </div>
+
+
+    <button class="nav-hamburger js-menu-toggle" aria-label="Open navigation menu" aria-expanded="false"
+      aria-controls="mobileMenuOverlay">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+
+  </nav>
+
+
+  <div id="mobileMenuOverlay" class="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu"
+    aria-hidden="true">
+    <div class="mobile-menu-inner">
+
+
+      <div class="mobile-menu-header" aria-hidden="true">Navigation</div>
+
+
+      <ul class="mobile-menu-links" role="menu" aria-label="Site sections">
+        <li role="none">
+          <a href="#about" role="menuitem" class="js-mobile-link">
+            <span class="link-num">01.</span> About
+          </a>
+        </li>
+        <li role="none">
+          <a href="#skills" role="menuitem" class="js-mobile-link">
+            <span class="link-num">02.</span> Skills
+          </a>
+        </li>
+        <li role="none">
+          <a href="#projects" role="menuitem" class="js-mobile-link">
+            <span class="link-num">03.</span> Projects
+          </a>
+        </li>
+        <li role="none">
+          <a href="#contact" role="menuitem" class="js-mobile-link">
+            <span class="link-num">04.</span> Contact
+          </a>
+        </li>
+      </ul>
+
+
+      <div class="mobile-menu-actions">
+
+        <a href="#contact" class="mobile-hire-btn js-mobile-link" aria-label="Hire Hamza Mohammed">
+          <span>Hire Me</span>
+        </a>
+
+
+        <button class="mobile-theme-btn js-theme-toggle" aria-pressed="false" aria-label="Switch color theme">
+          <span class="theme-icon" aria-hidden="true">☀️</span>
+          <span class="mobile-theme-label">Switch to Light Mode</span>
+        </button>
+      </div>
+
+
+      <div class="mobile-menu-footer" aria-hidden="true">hamza-mohammed.me</div>
+
     </div>
   </div>
 
-  <section id="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
-    <div class="hero-content">
-      <div class="hero-tag">Backend Developer · University of Mosul</div>
-      <h1 class="hero-name">Hamza<br /><span class="cyan">Mohammed</span></h1>
-      <p class="hero-title"><span class="bracket">[</span> Laravel · FilamentPHP · Livewire · Flutter <span
-          class="bracket">]</span></p>
-      <p class="hero-desc">4th-year Computer Science student at the University of Mosul, specialising in Networks. I
-        build clean, scalable backend systems and admin interfaces that power real products.</p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-outline">Get In Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num">11<span>+</span></div>
-          <div class="stat-label">Projects Built</div>
-        </div>
-        <div>
-          <div class="stat-num">4<span>th</span></div>
-          <div class="stat-label">Year Student</div>
-        </div>
-        <div>
-          <div class="stat-num">5<span>+</span></div>
-          <div class="stat-label">Technologies</div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-card">
-      <div class="card-label">// Tech Stack</div>
-      <div class="tech-stack-item"><img src="images/laravel.png" alt="Laravel Framework" width="48" height="48">Laravel
-        Framework</div>
-      <div class="tech-stack-item"><img src="images/filament.png" alt="FilamentPHP" width="48" height="48">FilamentPHP
-      </div>
-      <div class="tech-stack-item"><img src="images/livewire.png" alt="Livewire" width="48" height="48">Livewire</div>
-      <div class="tech-stack-item"><img src="images/flutter.png" alt="Flutter / Dart" width="48" height="48">Flutter /
-        Dart</div>
-      <div class="tech-stack-item"><img src="images/MySQL.png" alt="MySQL" width="70" height="58">MySQL</div>
-      <div class="tech-stack-item"><img src="images/Python.png" alt="Python" width="48" height="48">Python</div>
-    </div>
-  </section>
 
-  <section id="about">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <div class="section-tag">About Me</div>
-          <h2 class="section-title">Building backends<br />that scale.</h2>
-          <div class="section-line"></div>
-          <p>I'm <strong>Hamza Mohammed</strong>, a backend developer and 4th-year Computer Science student at the
-            <strong>College of Computer Science & Mathematics, University of Mosul</strong> — specialising in
-            Networking.
-          </p>
-          <p>My focus is crafting robust server-side applications using the Laravel ecosystem. I design clean APIs,
-            build powerful admin panels with <strong>FilamentPHP</strong>, create reactive interfaces with
-            <strong>Livewire</strong>, and extend to mobile with <strong>Flutter</strong>.
-          </p>
-          <div class="about-info">
-            <div class="info-item">
-              <div class="info-key">Location</div>
-              <div class="info-val">Duhok, Iraq</div>
-            </div>
-            <div class="info-item">
-              <div class="info-key">Department</div>
-              <div class="info-val">Networks</div>
-            </div>
-            <div class="info-item">
-              <div class="info-key">Stage</div>
-              <div class="info-val">4th Year</div>
-            </div>
-            <div class="info-item">
-              <div class="info-key">Status</div>
-              <div class="info-val">Open to Work</div>
+  <main id="main" role="main">
+
+
+    <section id="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-glow2" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-name">Hamza<br /><span class="cyan">Mohammed</span></h1>
+        <p class="hero-title">
+          <span class="bracket">[</span> Laravel · FilamentPHP · Livewire · Flutter <span class="bracket">]</span>
+        </p>
+        <p class="hero-desc">4th-year Computer Science student at the University of Mosul, specialising in Networks. I
+          build clean, scalable backend systems and admin interfaces that power real products.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#contact" class="btn-outline">Get In Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">11<span>+</span></div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div>
+            <div class="stat-num">4<span>th</span></div>
+            <div class="stat-label">Year Student</div>
+          </div>
+          <div>
+            <div class="stat-num">5<span>+</span></div>
+            <div class="stat-label">Technologies</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Tech stack quick reference">
+        <div class="card-label">// Tech Stack</div>
+        <div class="tech-stack-item">
+          <img src="images/laravel.png" alt="Laravel Framework" width="32" height="32" loading="eager">Laravel Framework
+        </div>
+        <div class="tech-stack-item">
+          <img src="images/filament.png" alt="FilamentPHP" width="32" height="32" loading="eager">FilamentPHP
+        </div>
+        <div class="tech-stack-item">
+          <img src="images/livewire.png" alt="Livewire" width="32" height="32" loading="eager">Livewire
+        </div>
+        <div class="tech-stack-item">
+          <img src="images/flutter.png" alt="Flutter / Dart" width="32" height="32" loading="eager">Flutter / Dart
+        </div>
+        <div class="tech-stack-item">
+          <img src="images/MySQL.png" alt="MySQL" width="48" height="38" loading="eager">MySQL
+        </div>
+        <div class="tech-stack-item">
+          <img src="images/Python.png" alt="Python" width="32" height="32" loading="eager">Python
+        </div>
+      </div>
+    </section>
+
+
+    <section id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <div class="section-tag">About Me</div>
+            <h2 class="section-title">Building backends<br />that scale.</h2>
+            <div class="section-line"></div>
+            <p>I'm <strong>Hamza Mohammed</strong>, a backend developer and 4th-year Computer Science student at the
+              <strong>College of Computer Science &amp; Mathematics, University of Mosul</strong> — specialising in
+              Networking.
+            </p>
+            <p>My focus is crafting robust server-side applications using the Laravel ecosystem. I design clean APIs,
+              build powerful admin panels with <strong>FilamentPHP</strong>, create reactive interfaces with
+              <strong>Livewire</strong>, and extend to mobile with <strong>Flutter</strong>.
+            </p>
+            <div class="about-info">
+              <div class="info-item">
+                <div class="info-key">Location</div>
+                <div class="info-val">Duhok, Iraq</div>
+              </div>
+              <div class="info-item">
+                <div class="info-key">Department</div>
+                <div class="info-val">Networks</div>
+              </div>
+              <div class="info-item">
+                <div class="info-key">Stage</div>
+                <div class="info-val">4th Year</div>
+              </div>
+              <div class="info-item">
+                <div class="info-key">Status</div>
+                <div class="info-val">Open to Work</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="skills">
-    <div class="section-inner">
-      <div class="section-tag reveal">Skills & Tools</div>
-      <h2 class="section-title reveal">What I work with.</h2>
-      <div class="section-line reveal"></div>
-      <div class="skills-grid">
-        <div class="skill-card reveal laravel">
-          <img src="images/laravel.png" alt="Laravel" width="48" height="48" loading="lazy" decoding="async">
-          <div class="skill-name">Laravel</div>
-          <div class="skill-desc">MVC, Eloquent ORM, Queues, Events, REST APIs, Sanctum</div>
-          <div class="skill-bar-wrap">
-            <div class="skill-bar" data-w="92"></div>
-          </div>
-        </div>
-        <div class="skill-card reveal filament">
-          <img src="images/filament.png" alt="FilamentPHP" width="48" height="48" loading="lazy" decoding="async">
-          <div class="skill-name">FilamentPHP</div>
-          <div class="skill-desc">Admin panels, resources, forms, tables, widgets, plugins</div>
-          <div class="skill-bar-wrap">
-            <div class="skill-bar" data-w="90"></div>
-          </div>
-        </div>
-        <div class="skill-card reveal livewire">
-          <img src="images/livewire.png" alt="Livewire" width="48" height="48" loading="lazy" decoding="async">
-          <div class="skill-name">Livewire</div>
-          <div class="skill-desc">Full-stack reactive components, real-time UI, SPA-like UX</div>
-          <div class="skill-bar-wrap">
-            <div class="skill-bar" data-w="85"></div>
-          </div>
-        </div>
-        <div class="skill-card reveal flutter">
-          <img src="images/flutter.png" alt="Flutter" width="48" height="48" loading="lazy" decoding="async">
-          <div class="skill-name">Flutter</div>
-          <div class="skill-desc">Cross-platform mobile apps, state management, API integration</div>
-          <div class="skill-bar-wrap">
-            <div class="skill-bar" data-w="78"></div>
-          </div>
-        </div>
-        <div class="skill-card reveal mysql">
-          <img src="images/MySQL.png" alt="MySQL" width="80" height="68" loading="lazy" decoding="async">
-          <div class="skill-name">MySQL</div>
-          <div class="skill-desc">Schema design, query optimisation, migrations, relationships</div>
-          <div class="skill-bar-wrap">
-            <div class="skill-bar" data-w="87"></div>
-          </div>
-        </div>
-        <div class="skill-card reveal python">
-          <img src="images/Python.png" alt="Python" width="48" height="48" loading="lazy" decoding="async">
-          <div class="skill-name">Python</div>
-          <div class="skill-desc">Tkinter GUIs, Flask web apps, sockets, networking scripts</div>
-          <div class="skill-bar-wrap">
-            <div class="skill-bar" data-w="72"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="projects">
-    <div class="section-inner">
-      <div class="section-tag reveal">Portfolio</div>
-      <h2 class="section-title reveal">All projects.</h2>
-      <div class="section-line reveal"></div>
-      <div class="projects-filter reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="laravel">Laravel</button>
-        <button class="filter-btn" data-filter="flutter">Flutter</button>
-        <button class="filter-btn" data-filter="python">Python</button>
-      </div>
-      <div class="projects-grid" id="projectsGrid">
+    <section id="skills">
+      <div class="section-inner">
+        <div class="section-tag reveal">Skills &amp; Tools</div>
+        <h2 class="section-title reveal">What I work with.</h2>
+        <div class="section-line reveal"></div>
+        <div class="skills-grid">
 
-        <div class="project-card reveal" data-tags="laravel">
-          <div class="project-img has-img">
-            <img src="images/appointment-api.png" alt="Appointment API" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
+          <div class="skill-card reveal laravel">
+            <img src="images/laravel.png" alt="Laravel" width="48" height="48" loading="lazy" decoding="async">
+            <div class="skill-name">Laravel</div>
+            <div class="skill-desc">MVC, Eloquent ORM, Queues, Events, REST APIs, Sanctum</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-w="92"></div>
             </div>
-            <div class="project-img-line" style="background:#f59e0b"></div>
           </div>
-          <div class="project-top">
-            <span class="project-num">01</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
+
+          <div class="skill-card reveal filament">
+            <img src="images/filament.png" alt="FilamentPHP" width="48" height="48" loading="lazy" decoding="async">
+            <div class="skill-name">FilamentPHP</div>
+            <div class="skill-desc">Admin panels, resources, forms, tables, widgets, plugins</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-w="90"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal livewire">
+            <img src="images/livewire.png" alt="Livewire" width="48" height="48" loading="lazy" decoding="async">
+            <div class="skill-name">Livewire</div>
+            <div class="skill-desc">Full-stack reactive components, real-time UI, SPA-like UX</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-w="85"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal flutter">
+            <img src="images/flutter.png" alt="Flutter" width="48" height="48" loading="lazy" decoding="async">
+            <div class="skill-name">Flutter</div>
+            <div class="skill-desc">Cross-platform mobile apps, state management, API integration</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-w="78"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal mysql">
+            <img src="images/MySQL.png" alt="MySQL" width="80" height="68" loading="lazy" decoding="async">
+            <div class="skill-name">MySQL</div>
+            <div class="skill-desc">Schema design, query optimisation, migrations, relationships</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-w="87"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal python">
+            <img src="images/Python.png" alt="Python" width="48" height="48" loading="lazy" decoding="async">
+            <div class="skill-name">Python</div>
+            <div class="skill-desc">Tkinter GUIs, Flask web apps, sockets, networking scripts</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-w="72"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section id="projects">
+      <div class="section-inner">
+        <div class="section-tag reveal">Portfolio</div>
+        <h2 class="section-title reveal">All projects.</h2>
+        <div class="section-line reveal"></div>
+
+        <div class="projects-filter reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="laravel">Laravel</button>
+          <button class="filter-btn" data-filter="flutter">Flutter</button>
+          <button class="filter-btn" data-filter="python">Python</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+
+
+          <div class="project-card reveal" data-tags="laravel">
+            <div class="project-img">
+              <img src="images/appointment-api.png" alt="Appointment API" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:#f59e0b"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">01</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                  title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+                <a href="https://appointment-booking-management-a8c4bd5583b9.herokuapp.com" target="_blank"
+                  rel="noopener noreferrer" class="project-link" title="Live Demo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M14 3v2H4v14h14v-7h2v9H2V3h12zm5 0h-4V1h6v6h-2V3.414l-8.293 8.293-1.414-1.414L19 3z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Appointment Management System API</div>
+              <p class="project-desc">A full REST API for managing appointments and scheduling with role-based access
+                control, FilamentPHP admin panel, and Sanctum authentication.</p>
+              <div class="project-tags">
+                <span class="tag red">Laravel</span>
+                <span class="tag orange">FilamentPHP</span>
+                <span class="tag green">MySQL</span>
+                <span class="tag purple">Sanctum</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="flutter">
+            <div class="project-img">
+              <img src="images/green-university-app.png" alt="Green University App" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:#4ade80"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">02</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                  title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Green University App</div>
+              <p class="project-desc">A Flutter mobile application consuming the Green University API, providing a
+                cross-platform interface for students and staff to access university services.</p>
+              <div class="project-tags">
+                <span class="tag blue">Flutter</span>
+                <span class="tag green">Dart</span>
+                <span class="tag purple">REST API</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="laravel">
+            <div class="project-img">
+              <img src="images/green-university-api.png" alt="Green University API" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:#4ade80"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">03</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                  title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+                <a href="https://green-university-1b6fca2a493a.herokuapp.com" target="_blank" rel="noopener noreferrer"
+                  class="project-link" title="Live Demo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M14 3v2H4v14h14v-7h2v9H2V3h12zm5 0h-4V1h6v6h-2V3.414l-8.293 8.293-1.414-1.414L19 3z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Green University App API</div>
+              <p class="project-desc">The Laravel backend powering the Green University Flutter app. FilamentPHP admin
+                panel for data management and a clean REST API for mobile consumption.</p>
+              <div class="project-tags">
+                <span class="tag red">Laravel</span>
+                <span class="tag orange">FilamentPHP</span>
+                <span class="tag green">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="laravel">
+            <div class="project-img">
+              <img src="images/my-blog.png" alt="Personal Blog" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:#a78bfa"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">04</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                  title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Personal Blog</div>
+              <p class="project-desc">Personal technical blog built with Laravel, Livewire, and Tailwind CSS. Managed
+                via
+                FilamentPHP admin panel with Markdown support and SEO-friendly slugs, authenticated with Google.</p>
+              <div class="project-tags">
+                <span class="tag red">Laravel</span>
+                <span class="tag pink">Livewire</span>
+                <span class="tag orange">FilamentPHP</span>
+                <span class="tag blue">Tailwind</span>
+                <span class="tag green">Google Auth</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="python">
+            <div class="project-img">
+              <img src="images/prayer-times.png" alt="Prayer Times App" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:var(--accent2)"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">05</span>
+              <div class="project-links">
+                <a href="https://github.com/hamza200411/Prayer-Times" target="_blank" rel="noopener noreferrer"
+                  class="project-link" title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Prayer Times Application</div>
+              <p class="project-desc">A desktop app built with Python Tkinter that fetches and displays accurate prayer
+                times using the Muslim Salat API, with a clean GUI interface.</p>
+              <div class="project-tags">
+                <span class="tag yellow">Python</span>
+                <span class="tag blue">Tkinter</span>
+                <span class="tag purple">API</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="laravel">
+            <div class="project-img">
+              <img src="images/blog-api.png" alt="Blog API" loading="lazy" decoding="async" />
+              <div class="project-img-line"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">06</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                  title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Blog API</div>
+              <p class="project-desc">RESTful API backend for a blog platform with a FilamentPHP-powered admin
+                dashboard.
+                Posts, categories, tags, and full content management.</p>
+              <div class="project-tags">
+                <span class="tag red">Laravel</span>
+                <span class="tag orange">FilamentPHP</span>
+                <span class="tag green">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="python">
+            <div class="project-img">
+              <img src="images/csam.png" alt="Teachers Evaluation" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:#facc15"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">07</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411/CSAM-College-Project-Teachers-Evaluation" target="_blank"
+                  rel="noopener noreferrer" class="project-link" title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">CSAM Teachers Evaluation</div>
+              <p class="project-desc">A college project built with Python Tkinter for evaluating teachers at the College
+                of Computer Science &amp; Mathematics, with data entry and reporting features.</p>
+              <div class="project-tags">
+                <span class="tag yellow">Python</span>
+                <span class="tag blue">Tkinter</span>
+                <span class="tag green">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="python">
+            <div class="project-img">
+              <img src="images/text-editor.png" alt="Text Editor" loading="lazy" decoding="async" />
+              <div class="project-img-line"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">08</span>
+              <div class="project-links">
+                <a href="https://github.com/hamza200411/Text-Editor-Project" target="_blank" rel="noopener noreferrer"
+                  class="project-link" title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Text Editor</div>
+              <p class="project-desc">A feature-rich desktop text editor built with Python Tkinter. Supports file
+                open/save operations, formatting, and a clean editing experience.</p>
+              <div class="project-tags">
+                <span class="tag yellow">Python</span>
+                <span class="tag blue">Tkinter</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="python">
+            <div class="project-img">
+              <img src="images/chatroom.png" alt="Chat Room App" loading="lazy" decoding="async" />
+              <div class="project-img-line"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">09</span>
+              <div class="project-links">
+                <a href="https://github.com/hamza200411/Chat-Room-App" target="_blank" rel="noopener noreferrer"
+                  class="project-link" title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Chat Room App</div>
+              <p class="project-desc">A client-server chat room application built with Python using sockets. Supports
+                multiple simultaneous connections and real-time message broadcasting.</p>
+              <div class="project-tags">
+                <span class="tag yellow">Python</span>
+                <span class="tag green">Sockets</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="python">
+            <div class="project-img">
+              <img src="images/network-monitoring.png" alt="Network Monitoring Dashboard" loading="lazy"
+                decoding="async" />
+              <div class="project-img-line"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">10</span>
+              <div class="project-links">
+                <a href="https://github.com/hamza200411/Simple-Network-Monitoring-Dashboard" target="_blank"
+                  rel="noopener noreferrer" class="project-link" title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">Simple Network Monitoring Dashboard</div>
+              <p class="project-desc">A lightweight network monitoring dashboard built with Python Flask. Provides a
+                real-time web interface to monitor network status and connectivity.</p>
+              <div class="project-tags">
+                <span class="tag yellow">Python</span>
+                <span class="tag green">Flask</span>
+                <span class="tag orange">HTML</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="project-card reveal" data-tags="laravel">
+            <div class="project-img">
+              <img src="images/ideas.png" alt="IDEAS Social Platform" loading="lazy" decoding="async" />
+              <div class="project-img-line" style="background:#a78bfa"></div>
+            </div>
+            <div class="project-top">
+              <span class="project-num">11</span>
+              <div class="project-links">
+                <span class="private-badge">Private</span>
+                <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
+                  title="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-title">IDEAS — Social Platform</div>
+              <p class="project-desc">A Twitter-like social platform built with Laravel and a custom-built admin panel.
+                Share ideas, follow users, and engage with posts in a clean feed interface.</p>
+              <div class="project-tags">
+                <span class="tag red">Laravel</span>
+                <span class="tag orange">Blade</span>
+                <span class="tag purple">Custom Admin</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section id="contact">
+      <div class="section-inner">
+        <div class="section-tag reveal">Contact</div>
+        <h2 class="section-title reveal">Let's build something.</h2>
+        <div class="section-line reveal"></div>
+
+        <div class="contact-grid">
+          <div class="reveal">
+            <p class="contact-intro">I'm open to freelance projects, internships, and collaborations. Whether you need a
+              Laravel backend, a FilamentPHP admin panel, or a Flutter app — feel free to reach out any time.</p>
+
+            <div class="contact-links">
+              <a href="mailto:hamza.mohammed.200411@gmail.com" class="contact-link">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <div>
+                  <span class="cl-label">Email</span>
+                  <span class="cl-val">hamza.mohammed.200411@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-              <a href="https://appointment-booking-management-a8c4bd5583b9.herokuapp.com" target="_blank"
-                rel="noopener noreferrer" class="project-link" title="Live Demo">
-                <svg viewBox="0 0 24 24">
-                  <path d="M14 3v2H4v14h14v-7h2v9H2V3h12zm5 0h-4V1h6v6h-2V3.414l-8.293 8.293-1.414-1.414L19 3z" />
                 </svg>
+                <div>
+                  <span class="cl-label">GitHub</span>
+                  <span class="cl-val">github.com/hamza200411</span>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/hamza-mohammed-hashem-3634722a9" target="_blank"
+                rel="noopener noreferrer" class="contact-link">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                <div>
+                  <span class="cl-label">LinkedIn</span>
+                  <span class="cl-val">Hamza Mohammed Hashem</span>
+                </div>
               </a>
             </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Appointment Management System API</div>
-            <p class="project-desc">A full REST API for managing appointments and scheduling with role-based access
-              control, FilamentPHP admin panel, and Sanctum authentication.</p>
-            <div class="project-tags">
-              <span class="tag red">Laravel</span>
-              <span class="tag orange">FilamentPHP</span>
-              <span class="tag green">MySQL</span>
-              <span class="tag purple">Sanctum</span>
-            </div>
-          </div>
-        </div>
 
-        <div class="project-card reveal" data-tags="flutter">
-          <div class="project-img has-img">
-            <img src="images/green-university-app.png" alt="Green University App" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line" style="background:#4ade80"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">02</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Green University App</div>
-            <p class="project-desc">A Flutter mobile application consuming the Green University API, providing a
-              cross-platform interface for students and staff to access university services.</p>
-            <div class="project-tags"><span class="tag blue">Flutter</span><span class="tag green">Dart</span><span
-                class="tag purple">REST API</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="laravel">
-          <div class="project-img has-img">
-            <img src="images/green-university-api.png" alt="Green University API" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line" style="background:#4ade80"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">03</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-              <a href="https://green-university-1b6fca2a493a.herokuapp.com" target="_blank" rel="noopener noreferrer"
-                class="project-link" title="Live Demo">
-                <svg viewBox="0 0 24 24">
-                  <path d="M14 3v2H4v14h14v-7h2v9H2V3h12zm5 0h-4V1h6v6h-2V3.414l-8.293 8.293-1.414-1.414L19 3z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Green University App API</div>
-            <p class="project-desc">The Laravel backend powering the Green University Flutter app. FilamentPHP admin
-              panel for data management and a clean REST API for mobile consumption.</p>
-            <div class="project-tags"><span class="tag red">Laravel</span><span
-                class="tag orange">FilamentPHP</span><span class="tag green">MySQL</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="laravel">
-          <div class="project-img has-img">
-            <img src="images/my-blog.png" alt="Personal Blog" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line" style="background:#a78bfa"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">04</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Personal Blog</div>
-            <p class="project-desc">Personal technical blog built with Laravel, Livewire, and Tailwind CSS. Managed via
-              FilamentPHP admin panel with Markdown support and SEO-friendly slugs, authenticated with Google.</p>
-            <div class="project-tags"><span class="tag red">Laravel</span><span class="tag pink">Livewire</span><span
-                class="tag orange">FilamentPHP</span><span class="tag blue">Tailwind</span><span
-                class="tag green">Google Auth</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="python">
-          <div class="project-img has-img">
-            <img src="images/prayer-times.png" alt="Prayer Times App" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line" style="background:var(--accent2)"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">05</span>
-            <div class="project-links">
-              <a href="https://github.com/hamza200411/Prayer-Times" target="_blank" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Prayer Times Application</div>
-            <p class="project-desc">A desktop app built with Python Tkinter that fetches and displays accurate prayer
-              times using the Muslim Salat API, with a clean GUI interface.</p>
-            <div class="project-tags"><span class="tag yellow">Python</span><span class="tag blue">Tkinter</span><span
-                class="tag purple">API</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="laravel">
-          <div class="project-img has-img">
-            <img src="images/blog-api.png" alt="Blog API" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">06</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Blog API</div>
-            <p class="project-desc">RESTful API backend for a blog platform with a FilamentPHP-powered admin dashboard.
-              Posts, categories, tags, and full content management.</p>
-            <div class="project-tags"><span class="tag red">Laravel</span><span
-                class="tag orange">FilamentPHP</span><span class="tag green">MySQL</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="python">
-          <div class="project-img has-img">
-            <img src="images/csam.png" alt="Teachers Evaluation" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line" style="background:#facc15"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">07</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411/CSAM-College-Project-Teachers-Evaluation" target="_blank"
-                rel="noopener noreferrer" class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">CSAM Teachers Evaluation</div>
-            <p class="project-desc">A college project built with Python Tkinter for evaluating teachers at the College
-              of Computer Science & Mathematics, with data entry and reporting features.</p>
-            <div class="project-tags"><span class="tag yellow">Python</span><span class="tag blue">Tkinter</span><span
-                class="tag green">Mysql</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="python">
-          <div class="project-img has-img">
-            <img src="images/text-editor.png" alt="Text Editor" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">08</span>
-            <div class="project-links">
-              <a href="https://github.com/hamza200411/Text-Editor-Project" target="_blank" rel="noopener noreferrer"
-                class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Text Editor</div>
-            <p class="project-desc">A feature-rich desktop text editor built with Python Tkinter. Supports file
-              open/save operations, formatting, and a clean editing experience.</p>
-            <div class="project-tags"><span class="tag yellow">Python</span><span class="tag blue">Tkinter</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="python">
-          <div class="project-img has-img">
-            <img src="images/chatroom.png" alt="Chat Room App" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">09</span>
-            <div class="project-links">
-              <a href="https://github.com/hamza200411/Chat-Room-App" target="_blank" rel="noopener noreferrer"
-                class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Chat Room App</div>
-            <p class="project-desc">A client-server chat room application built with Python using sockets. Supports
-              multiple simultaneous connections and real-time message broadcasting.</p>
-            <div class="project-tags"><span class="tag yellow">Python</span><span class="tag green">Sockets</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="python">
-          <div class="project-img has-img">
-            <img src="images/network-monitoring.png" alt="Network Monitoring Dashboard" loading="lazy"
-              decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">10</span>
-            <div class="project-links">
-              <a href="https://github.com/hamza200411/Simple-Network-Monitoring-Dashboard" target="_blank"
-                rel="noopener noreferrer" class="project-link" title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">Simple Network Monitoring Dashboard</div>
-            <p class="project-desc">A lightweight network monitoring dashboard built with Python Flask. Provides a
-              real-time web interface to monitor network status and connectivity.</p>
-            <div class="project-tags"><span class="tag yellow">Python</span><span class="tag green">Flask</span><span
-                class="tag orange">HTML</span></div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-tags="laravel">
-          <div class="project-img has-img">
-            <img src="images/ideas.png" alt="IDEAS Social Platform" loading="lazy" decoding="async" />
-            <div class="project-img-overlay"
-              style="background:linear-gradient(to top, rgba(4,10,18,.92) 0%, rgba(4,10,18,.4) 60%, transparent 100%)">
-            </div>
-            <div class="project-img-line" style="background:#a78bfa"></div>
-          </div>
-          <div class="project-top">
-            <span class="project-num">11</span>
-            <div class="project-links">
-              <span class="private-badge">Private</span>
-              <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="project-link"
-                title="GitHub"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-title">IDEAS — Social Platform</div>
-            <p class="project-desc">A Twitter-like social platform built with Laravel and a custom-built admin panel.
-              Share ideas, follow users, and engage with posts in a clean feed interface.</p>
-            <div class="project-tags"><span class="tag red">Laravel</span><span class="tag orange">Blade</span><span
-                class="tag purple">Custom Admin</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="section-inner">
-      <div class="section-tag reveal">Contact</div>
-      <h2 class="section-title reveal">Let's build something.</h2>
-      <div class="section-line reveal"></div>
-      <div class="contact-grid">
-        <div class="reveal">
-          <p class="contact-intro">I'm open to freelance projects, internships, and collaborations. Whether you need a
-            Laravel backend, a FilamentPHP admin panel, or a Flutter app — feel free to reach out any time.</p>
-          <div class="contact-links">
-            <a href="mailto:hamza.mohammed.200411@gmail.com" class="contact-link">
-              <svg viewBox="0 0 24 24">
+            <div class="domain-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
-                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
               </svg>
-              <div><span class="cl-label">Email</span><span class="cl-val">hamza.mohammed.200411@gmail.com</span></div>
-            </a>
-            <a href="https://github.com/hamza200411" target="_blank" rel="noopener noreferrer" class="contact-link">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              <div><span class="cl-label">GitHub</span><span class="cl-val">github.com/hamza200411</span></div>
-            </a>
-            <a href="https://www.linkedin.com/in/hamza-mohammed-hashem-3634722a9" target="_blank"
-              rel="noopener noreferrer" class="contact-link">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-              <div><span class="cl-label">LinkedIn</span><span class="cl-val">Hamza Mohammed Hashem</span></div>
-            </a>
-          </div>
-          <div class="domain-badge">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-            </svg>
-            <a href="https://hamza-mohammed.me" target="_blank">hamza-mohammed.me</a>
-          </div>
-          <div class="avail-box">
-            <div class="avail-dot"></div>
-            <div class="avail-text"><strong>Available for work</strong><br />Open to freelance, internships &
-              collaborations</div>
-          </div>
-        </div>
+              <a href="https://hamza-mohammed.me" target="_blank" rel="noopener noreferrer">hamza-mohammed.me</a>
+            </div>
 
-        <div class="reveal">
-          <div class="info-card">
-            <div class="card-label" style="margin-bottom:1.5rem">// Quick Info</div>
-            <div class="info-row">
-              <div class="info-icon"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
-                </svg></div>
-              <div>
-                <div class="info-row-label">Location</div>
-                <div class="info-row-val">Duhok, Iraq</div>
+            <div class="avail-box">
+              <div class="avail-dot" aria-hidden="true"></div>
+              <div class="avail-text">
+                <strong>Available for work</strong><br />
+                Open to freelance, internships &amp; collaborations
               </div>
             </div>
-            <div class="info-row">
-              <div class="info-icon"><svg viewBox="0 0 24 24">
-                  <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
-                </svg></div>
-              <div>
-                <div class="info-row-label">Education</div>
-                <div class="info-row-val">University of Mosul</div>
-                <div class="info-row-sub">CS & Math — Networks — 4th Year</div>
+          </div>
+
+          <div class="reveal">
+            <div class="info-card">
+              <div class="card-label" style="margin-bottom:1.5rem">// Quick Info</div>
+
+              <div class="info-row">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-row-label">Location</div>
+                  <div class="info-row-val">Duhok, Iraq</div>
+                </div>
               </div>
-            </div>
-            <div class="info-row">
-              <div class="info-icon"><svg viewBox="0 0 24 24">
-                  <path
-                    d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
-                </svg></div>
-              <div>
-                <div class="info-row-label">Speciality</div>
-                <div class="info-row-val">Backend Development</div>
-                <div class="info-row-sub">Laravel Ecosystem · REST APIs</div>
+
+              <div class="info-row">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-row-label">Education</div>
+                  <div class="info-row-val">University of Mosul</div>
+                  <div class="info-row-sub">CS &amp; Math — Networks — 4th Year</div>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="info-row-label">Speciality</div>
+                  <div class="info-row-val">Backend Development</div>
+                  <div class="info-row-sub">Laravel Ecosystem · REST APIs</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="footer-copy">©
-      <script>document.write(new Date().getFullYear())</script> <span>Hamza Mohammed</span> · hamza-mohammed.me
+  </main>
+
+
+  <footer role="contentinfo">
+    <div class="footer-copy">
+      ©
+      <script>document.write(new Date().getFullYear())</script>
+      <span>Hamza Mohammed</span> · hamza-mohammed.me
     </div>
     <a href="#hero" class="footer-scroll">↑ Back to top</a>
   </footer>
 
+
+
+
   <script>
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+    'use strict';
 
-    const barObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.querySelectorAll('.skill-bar').forEach(b => b.style.width = b.dataset.w + '%'); });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.dataset.filter;
-        document.querySelectorAll('.project-card').forEach(card => {
-          card.classList.toggle('hidden', f !== 'all' && !card.dataset.tags.includes(f));
-        });
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').catch(() => { });
       });
-    });
-
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    function updateNavAndHeader() {
-      let current = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : ''; });
-
-      if (window.scrollY > 40) document.body.classList.add('scrolled'); else document.body.classList.remove('scrolled');
     }
 
-    window.addEventListener('scroll', updateNavAndHeader);
-    updateNavAndHeader();
 
     (function () {
+      const ROOT = document.documentElement;
+      const STORAGE_KEY = 'theme';
+
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light') ROOT.classList.add('light-theme');
+
+      function isLight() {
+        return ROOT.classList.contains('light-theme');
+      }
+
+      function updateAllToggleButtons() {
+        const light = isLight();
+
+
+        const desktopBtn = document.querySelector('.nav-theme-btn');
+        if (desktopBtn) {
+          const icon = desktopBtn.querySelector('.theme-icon');
+          const label = desktopBtn.querySelector('.theme-label');
+          if (icon) icon.textContent = light ? '🌙' : '☀️';
+          if (label) label.textContent = light ? 'Dark' : 'Light';
+          desktopBtn.setAttribute('aria-pressed', light);
+          desktopBtn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+
+
+        const mobileBtn = document.querySelector('.mobile-theme-btn');
+        if (mobileBtn) {
+          const icon = mobileBtn.querySelector('.theme-icon');
+          const label = mobileBtn.querySelector('.mobile-theme-label');
+          if (icon) icon.textContent = light ? '🌙' : '☀️';
+          if (label) label.textContent = light ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+          mobileBtn.setAttribute('aria-pressed', light);
+        }
+      }
+
+      function toggleTheme() {
+        const nowLight = ROOT.classList.toggle('light-theme');
+        localStorage.setItem(STORAGE_KEY, nowLight ? 'light' : 'dark');
+        updateAllToggleButtons();
+      }
+
+
+      document.querySelectorAll('.js-theme-toggle').forEach(btn => {
+        btn.addEventListener('click', toggleTheme);
+      });
+
+
+      updateAllToggleButtons();
+
+
+      window._updateThemeButtons = updateAllToggleButtons;
+    })();
+
+
+
+    (function () {
+      const overlay = document.getElementById('mobileMenuOverlay');
+      const hamburger = document.querySelector('.js-menu-toggle');
+      const mobileLinks = document.querySelectorAll('.js-mobile-link');
+
+      if (!overlay || !hamburger) return;
+
+
+      function getFocusables() {
+        return Array.from(overlay.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ));
+      }
+
+
+      function trapFocus(e) {
+        if (e.key !== 'Tab') return;
+        const focusables = getFocusables();
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+
+      function openMenu() {
+        document.body.classList.add('menu-open');
+        document.body.style.overflow = 'hidden';
+        overlay.setAttribute('aria-hidden', 'false');
+        hamburger.setAttribute('aria-expanded', 'true');
+        hamburger.setAttribute('aria-label', 'Close navigation menu');
+
+
+        setTimeout(() => {
+          const first = getFocusables()[0];
+          if (first) first.focus();
+        }, 60);
+
+        document.addEventListener('keydown', trapFocus);
+      }
+
+      function closeMenu() {
+        document.body.classList.remove('menu-open');
+        document.body.style.overflow = '';
+        overlay.setAttribute('aria-hidden', 'true');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        document.removeEventListener('keydown', trapFocus);
+        hamburger.focus();
+      }
+
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = document.body.classList.contains('menu-open');
+        isOpen ? closeMenu() : openMenu();
+      });
+
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+          closeMenu();
+        }
+      });
+
+
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeMenu();
+      });
+
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
+
+
+    (function () {
+      const sections = document.querySelectorAll('section[id]');
+      const desktopLinks = document.querySelectorAll('.nav-links-desktop a');
+
+      function onScroll() {
+
+        if (window.scrollY > 40) {
+          document.body.classList.add('scrolled');
+        } else {
+          document.body.classList.remove('scrolled');
+        }
+
+
+        let current = '';
+        sections.forEach(s => {
+          if (window.scrollY >= s.offsetTop - 130) current = s.id;
+        });
+
+        desktopLinks.forEach(a => {
+          const section = a.getAttribute('data-section');
+          a.classList.toggle('active', section === current);
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+
+
+    (function () {
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 70);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    })();
+
+
+
+    (function () {
+      const barObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.querySelectorAll('.skill-bar').forEach(bar => {
+              bar.style.width = bar.dataset.w + '%';
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.skill-card').forEach(card => barObs.observe(card));
+    })();
+
+
+
+    (function () {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.dataset.filter;
+
+          document.querySelectorAll('.project-card').forEach(card => {
+            const match = filter === 'all' || card.dataset.tags.includes(filter);
+            card.classList.toggle('hidden', !match);
+          });
+        });
+      });
+    })();
+
+
+
+    (function () {
+
       const modal = document.createElement('div');
       modal.className = 'img-modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', 'Image preview');
       modal.setAttribute('aria-hidden', 'true');
-      modal.innerHTML = '<div class="img-modal-inner"><button class="img-modal-close" aria-label="Close preview">✕</button><img src="" alt=""><div class="img-modal-caption" aria-hidden="true"></div></div>';
+      modal.innerHTML = `
+        <div class="img-modal-inner">
+          <button class="img-modal-close" aria-label="Close image preview">✕</button>
+          <img src="" alt="" />
+          <div class="img-modal-caption" aria-live="polite"></div>
+        </div>
+      `;
       document.body.appendChild(modal);
+
       const modalImg = modal.querySelector('img');
       const modalCaption = modal.querySelector('.img-modal-caption');
       const closeBtn = modal.querySelector('.img-modal-close');
 
       function openModal(src, alt) {
         modalImg.src = src;
-        modalImg.alt = alt || 'Project preview';
+        modalImg.alt = alt || 'Project image preview';
         modalCaption.textContent = alt || '';
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
@@ -2362,176 +3008,33 @@
       }
 
       closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-      document.querySelectorAll('.project-card .project-img img').forEach(img => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => openModal(img.src, img.alt || img.getAttribute('alt') || 'Project image'));
-      });
-    })();
-
-    const nav = document.querySelector('nav');
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.getElementById('navMenu');
-    const navBackdrop = document.getElementById('navBackdrop');
-
-    const focusableSelector = 'a[href], button:not([disabled])';
-    function trapFocusIn(element) {
-      const focusable = Array.from(element.querySelectorAll(focusableSelector));
-      if (!focusable.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      function handleKey(e) {
-        if (e.key !== 'Tab') return;
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-      element.__trapHandler = handleKey;
-      document.addEventListener('keydown', handleKey);
-    }
-    function releaseFocusTrap(element) {
-      if (element.__trapHandler) {
-        document.removeEventListener('keydown', element.__trapHandler);
-        delete element.__trapHandler;
-      }
-    }
-
-    const mobileSheet = document.getElementById('mobileSheet');
-    const mobileCloseBtn = document.querySelector('.mobile-sheet-close');
-
-    if (navToggle) {
-      navToggle.addEventListener('click', () => {
-        const isMobile = window.matchMedia('(max-width: 900px)').matches && mobileSheet;
-        if (isMobile) {
-          const open = mobileSheet.classList.toggle('open');
-          document.body.classList.toggle('nav-open', open);
-          navToggle.setAttribute('aria-expanded', open);
-          mobileSheet.setAttribute('aria-hidden', !open);
-          document.body.style.overflow = open ? 'hidden' : '';
-          if (open) {
-            const first = mobileSheet.querySelector('a, button');
-            if (first) first.focus();
-            trapFocusIn(mobileSheet);
-          } else {
-            releaseFocusTrap(mobileSheet);
-            navToggle.focus();
-          }
-          return;
-        }
-
-        const open = document.body.classList.toggle('nav-open');
-        navToggle.setAttribute('aria-expanded', open);
-        navMenu.setAttribute('aria-hidden', !open);
-        if (open) {
-          const firstLink = navMenu.querySelector('a');
-          if (firstLink) firstLink.focus();
-          trapFocusIn(navMenu);
-        } else {
-          releaseFocusTrap(navMenu);
-          navToggle.focus();
-        }
-      });
-
-      document.querySelectorAll('.nav-links a, .mobile-sheet-nav a').forEach(a => a.addEventListener('click', () => {
-        if (mobileSheet && mobileSheet.classList.contains('open')) {
-          mobileSheet.classList.remove('open');
-          mobileSheet.setAttribute('aria-hidden', true);
-          releaseFocusTrap(mobileSheet);
-          document.body.style.overflow = '';
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', false);
-          return;
-        }
-        document.body.classList.remove('nav-open');
-        navMenu.setAttribute('aria-hidden', true);
-        releaseFocusTrap(navMenu);
-        navToggle.setAttribute('aria-expanded', false);
-      }));
-
-      if (navBackdrop) navBackdrop.addEventListener('click', () => {
-        if (mobileSheet && mobileSheet.classList.contains('open')) {
-          mobileSheet.classList.remove('open');
-          mobileSheet.setAttribute('aria-hidden', true);
-          releaseFocusTrap(mobileSheet);
-          document.body.style.overflow = '';
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', false);
-          return;
-        }
-        document.body.classList.remove('nav-open');
-        navMenu.setAttribute('aria-hidden', true);
-        releaseFocusTrap(navMenu);
-        navToggle.setAttribute('aria-expanded', false);
-      });
-
-      if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', () => {
-        if (mobileSheet && mobileSheet.classList.contains('open')) {
-          mobileSheet.classList.remove('open');
-          mobileSheet.setAttribute('aria-hidden', true);
-          releaseFocusTrap(mobileSheet);
-          document.body.style.overflow = '';
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', false);
-          navToggle.focus();
-        }
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal();
       });
 
       document.addEventListener('keydown', e => {
-        if (e.key !== 'Escape') return;
-        if (mobileSheet && mobileSheet.classList.contains('open')) {
-          mobileSheet.classList.remove('open');
-          mobileSheet.setAttribute('aria-hidden', true);
-          releaseFocusTrap(mobileSheet);
-          document.body.style.overflow = '';
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', false);
-          navToggle.focus();
-          return;
-        }
-        if (document.body.classList.contains('nav-open')) {
-          document.body.classList.remove('nav-open');
-          navMenu.setAttribute('aria-hidden', true);
-          releaseFocusTrap(navMenu);
-          navToggle.setAttribute('aria-expanded', false);
-          navToggle.focus();
-        }
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
       });
-    }
 
-    const themeToggles = document.querySelectorAll('.theme-toggle');
-    if (themeToggles.length) {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') document.documentElement.classList.add('light-theme');
-      const updateThemeButtons = () => {
-        const isLight = document.documentElement.classList.contains('light-theme');
-        themeToggles.forEach(btn => {
-          btn.textContent = isLight ? '🌙' : '☀️';
-          btn.setAttribute('aria-pressed', isLight);
+
+      document.querySelectorAll('.project-card .project-img img').forEach(img => {
+        img.addEventListener('click', () => {
+          openModal(img.src, img.getAttribute('alt') || 'Project image');
         });
-      };
-      updateThemeButtons();
-      themeToggles.forEach(btn => btn.addEventListener('click', () => {
-        const isLight = document.documentElement.classList.toggle('light-theme');
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        updateThemeButtons();
-      }));
-    }
+      });
+    })();
+
+
 
     document.querySelectorAll('a[target="_blank"]').forEach(a => {
-      if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
+      if (!a.getAttribute('rel') || !a.getAttribute('rel').includes('noopener')) {
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
     });
 
-    document.querySelectorAll('.project-img img, .skills-grid img').forEach(img => {
-      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
-      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
-    });
   </script>
+
 </body>
 
 </html>
