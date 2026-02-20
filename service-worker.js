@@ -9,7 +9,7 @@ const ASSETS = [
   '/images/favicon.ico',
   '/images/apple-touch-icon.png',
   '/images/site.webmanifest',
-  '/images/laravel.png',
+  '/images/laravel.webp',
   '/images/filament.png',
   '/images/livewire.png',
   '/images/flutter.png',
@@ -84,4 +84,5 @@ self.addEventListener('fetch', event => {
       return caches.match('/index.html');
     })
   );
+
 });
