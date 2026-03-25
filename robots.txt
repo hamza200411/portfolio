@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /images/site.webmanifest
+
+# Priority crawl hints
+Crawl-delay: 1
 
 Sitemap: https://hamza-mohammed.me/sitemap.xml
