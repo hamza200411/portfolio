@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
   <url>
     <loc>https://hamza-mohammed.me/</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/network-monitoring.png</image:loc>
+      <image:title>Network Monitoring Dashboard — Hamza Mohammed</image:title>
+      <image:caption>Real-time network monitoring dashboard built by Hamza Mohammed using Python and Flask</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/chatroom.png</image:loc>
+      <image:title>Chat Room Client/Server App — Hamza Mohammed</image:title>
+      <image:caption>Multi-client TCP socket chat application by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/green-university-api.png</image:loc>
+      <image:title>Green University API Backend — Hamza Mohammed</image:title>
+      <image:caption>Laravel REST API and FilamentPHP admin panel by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/green-university-app.png</image:loc>
+      <image:title>Green University Mobile App — Hamza Mohammed</image:title>
+      <image:caption>Flutter mobile application for university platform by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/appointment-api.png</image:loc>
+      <image:title>Appointment Management API — Hamza Mohammed</image:title>
+      <image:caption>Laravel REST API for appointment scheduling by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/my-blog.png</image:loc>
+      <image:title>Personal Blog — Hamza Mohammed</image:title>
+      <image:caption>Self-hosted technical blog built with Laravel and Livewire by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/prayer-times.png</image:loc>
+      <image:title>Prayer Times Desktop App — Hamza Mohammed</image:title>
+      <image:caption>Python Tkinter prayer times utility by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/ideas.png</image:loc>
+      <image:title>IDEAS Social Platform — Hamza Mohammed</image:title>
+      <image:caption>Laravel social platform with user feeds by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/csam.png</image:loc>
+      <image:title>CSAM Teachers Evaluation System — Hamza Mohammed</image:title>
+      <image:caption>Python faculty evaluation application by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/text-editor.png</image:loc>
+      <image:title>Text Editor — Hamza Mohammed</image:title>
+      <image:caption>Python Tkinter desktop text editor by Hamza Mohammed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-mohammed.me/images/blog-api.png</image:loc>
+      <image:title>Blog API — Hamza Mohammed</image:title>
+      <image:caption>RESTful Laravel blog backend with FilamentPHP CMS by Hamza Mohammed</image:caption>
+    </image:image>
   </url>
+
 </urlset>
