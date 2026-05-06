@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Hamza Mohammed — IT Support, Networking &amp; Backend Developer | Duhok, Iraq</title>
+  <title>Hamza Mohammed — IT Support, Networking &amp; Backend Developer | CS Graduate, Duhok Iraq</title>
 
-  <meta name="description" content="Hamza Mohammed is a Computer Science graduate (Networks) from the University of Mosul, based in Duhok, Iraq. IT Support specialist, CCNA candidate, and Laravel/Python backend developer with 11+ projects and 2 years of hands-on experience.">
-  <meta name="keywords" content="Hamza Mohammed, Hamza Mohammed Hashem, حمزة محمد, IT Support, Networking, CCNA, Laravel developer, Python developer, backend developer, University of Mosul, Duhok Iraq, network monitoring, network engineer, web developer Iraq">
+  <meta name="description" content="Hamza Mohammed — CS graduate (Networks) from the University of Mosul, Duhok, Iraq. IT Support specialist, CCNA candidate, and Laravel/Python backend developer. 11+ projects.">
+  <meta name="keywords" content="Hamza Mohammed, Hamza Mohammed Hashem, حمزة محمد, IT Support, Networking, CCNA, Laravel developer, Python developer, backend developer, CS graduate, University of Mosul graduate, Networks graduate, Duhok Iraq, network engineer, web developer Iraq">
   <meta name="author" content="Hamza Mohammed">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#2b4a8c">
@@ -57,7 +57,7 @@
           "height": 512
         },
         "jobTitle": "IT Support & Networking Specialist",
-        "description": "Hamza Mohammed is a final-year Computer Science student at the University of Mosul specialising in Networks. He is a CCNA candidate, IT support specialist, and backend developer with 2 years of experience in Laravel, Python, and network scripting.",
+        "description": "Hamza Mohammed is a Computer Science graduate (Networks) from the University of Mosul, Iraq. He is a CCNA candidate, IT support specialist, and backend developer with 2+ years of experience in Laravel, Python, and network scripting.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Duhok",
@@ -80,7 +80,15 @@
             "@type": "EducationalOccupationalCredential",
             "name": "B.Sc. Computer Science — Networks",
             "credentialCategory": "degree",
+            "dateCreated": "2026",
             "recognizedBy": { "@type": "CollegeOrUniversity", "name": "University of Mosul" }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Dean's Appreciation Certificate, Networks Department",
+            "credentialCategory": "certificate",
+            "dateCreated": "2026-05-04",
+            "recognizedBy": { "@type": "CollegeOrUniversity", "name": "University of Mosul — College of Computer Science & Mathematics" }
           },
           {
             "@type": "EducationalOccupationalCredential",
@@ -120,7 +128,7 @@
         "name": "Hamza Mohammed — IT Support, Networking & Backend Developer",
         "isPartOf": { "@id": "https://hamza-mohammed.me/#website" },
         "about": { "@id": "https://hamza-mohammed.me/#person" },
-        "description": "Official portfolio of Hamza Mohammed — IT Support & Networking specialist and backend developer. Computer Science graduate from the University of Mosul, Duhok, Iraq.",
+        "description": "Official portfolio of Hamza Mohammed — CS graduate (Networks, 2026) from the University of Mosul. IT Support specialist, CCNA candidate, and backend developer based in Duhok, Iraq.",
         "inLanguage": "en",
         "breadcrumb": {
           "@type": "BreadcrumbList",
@@ -260,7 +268,7 @@
             "name": "Who is Hamza Mohammed?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hamza Mohammed is a Computer Science graduate (Networks department) from the University of Mosul, Iraq. He specialises in IT support, networking, and backend development. He is a CCNA candidate with 2+ years of experience building web applications and REST APIs using Laravel and Python, based in Duhok, Iraq."
+              "text": "Hamza Mohammed is a Computer Science graduate (Networks department, class of 2026) from the University of Mosul, Iraq. He specialises in IT support, networking, and backend development. He is a CCNA candidate with 2+ years of experience building web applications and REST APIs using Laravel and Python, based in Duhok, Iraq."
             }
           },
           {
@@ -990,7 +998,36 @@
     .info-val { font-size: .9rem; font-weight: 400; color: var(--ink); }
     .info-sub { font-size: .78rem; color: var(--ink-3); margin-top: .1rem; font-weight: 300; }
 
-    
+    .cert-img-block {
+      margin-top: 2.5rem;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cert-img-label {
+      font-size: .63rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      padding: .7rem 1.2rem;
+      background: var(--paper-3);
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+    }
+
+    .cert-img-block img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: saturate(.9);
+      transition: filter .3s;
+    }
+
+    .cert-img-block:hover img { filter: saturate(1); }
+
     footer {
       padding: 2rem 5%;
       display: flex;
@@ -1056,6 +1093,7 @@
       <li><a href="#skills"     data-s="skills">Skills</a></li>
       <li><a href="#networking" data-s="networking">Networking</a></li>
       <li><a href="#projects"   data-s="projects">Projects</a></li>
+      <li><a href="#certifications" data-s="certifications">Credentials</a></li>
       <li><a href="#contact"    data-s="contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Get in touch</a>
@@ -1071,6 +1109,7 @@
     <a href="#skills"      class="mn-link">Skills</a>
     <a href="#networking"  class="mn-link">Networking</a>
     <a href="#projects"    class="mn-link">Projects</a>
+    <a href="#certifications" class="mn-link">Credentials</a>
     <a href="#contact"     class="mn-link">Contact</a>
   </div>
 
@@ -1082,7 +1121,7 @@
         <p class="hero-eyebrow">Duhok, Iraq &nbsp;·&nbsp; Open to Work</p>
         <h1 class="hero-name" id="hero-heading">Hamza<br>Mohammed</h1>
         <p class="hero-title">IT Support &amp; Networking</p>
-        <p class="hero-desc">4th-year Computer Science student at the University of Mosul, specialising in Networks. Background in IT support, network monitoring, security fundamentals, and backend scripting — currently pursuing CCNA.</p>
+        <p class="hero-desc">Computer Science graduate (Networks) from the University of Mosul. I specialise in networking, IT support, and backend development using Laravel and Python. Currently pursuing CCNA.</p>
         <div class="hero-contact">
           <a href="mailto:hamza.mohammed.200411@gmail.com">hamza.mohammed.200411@gmail.com</a>
           <span>+964 750 223 5461</span>
@@ -1100,8 +1139,8 @@
             <div class="stat-l">Projects Built</div>
           </div>
           <div>
-            <div class="stat-n">4th</div>
-            <div class="stat-l">Year Student</div>
+            <div class="stat-n">2026</div>
+            <div class="stat-l">CS Graduate</div>
           </div>
           <div>
             <div class="stat-n">2yr</div>
@@ -1119,9 +1158,9 @@
             <p class="section-label">About</p>
             <h2 class="section-title" id="about-heading">A bit about me.</h2>
             <div class="about-text">
-              <p>I'm <strong>Hamza Mohammed</strong>, a final-year Computer Science student at the University of Mosul, studying in the Networks department. I'm currently completing my CCNA alongside my degree, and I have a genuine interest in how networks are built, secured, and kept running.</p>
-              <p>On the side, I've spent the past two years building web applications and REST APIs — mostly in <strong>Laravel</strong> — which means I also understand how systems talk to each other, how servers are configured, and how to write scripts that automate the boring parts.</p>
-              <p>I'm based in <strong>Duhok, Iraq</strong> and actively looking for a full-time role where I can contribute to IT operations or networking infrastructure.</p>
+              <p>I'm <strong>Hamza Mohammed</strong>, a Computer Science graduate from the University of Mosul (Networks department, class of 2026).</p>
+              <p>I have two years of hands-on experience building web applications and REST APIs, mainly with <strong>Laravel</strong>.</p>
+              <p>Based in <strong>Duhok, Iraq</strong>, looking for a full-time role in IT operations, networking, or backend development.</p>
             </div>
             <div class="about-meta">
               <div class="meta-item">
@@ -1157,8 +1196,8 @@
               <ul>
                 <li style="flex-direction:column; align-items:flex-start; gap:.3rem;">
                   <span style="font-weight:500; color:var(--ink);">B.Sc. Computer Science — Networks</span>
-                  <span style="font-size:.8rem; color:var(--ink-3);">University of Mosul, 2022 – 2026</span>
-                  <span style="font-size:.78rem; color:var(--ink-3); font-weight:300; line-height:1.7;">Network Protocols · Network Security · Server Administration · Routing &amp; Switching · Wireless &amp; Mobile Computing · Distributed Systems · Cloud Computing · IoT</span>
+                  <span style="font-size:.8rem; color:var(--ink-3);">University of Mosul · 2022 – 2026 · Graduated</span>
+                  <span style="font-size:.78rem; color:var(--ink-3); font-weight:300; line-height:1.7;">Network Protocols · Security · Server Admin · Routing &amp; Switching · Wireless · Cloud · IoT</span>
                 </li>
               </ul>
             </div>
@@ -1189,9 +1228,8 @@
             <h3>Networking</h3>
             <ul>
               <li>TCP/IP, DNS, DHCP, VLANs, VPN</li>
-              <li>Routing &amp; Switching (CCNA level)</li>
+              <li>Routing &amp; Switching</li>
               <li>LAN / WAN / WLAN design</li>
-              <li>Firewalls, ACLs, IPS/IDS</li>
               <li>Network monitoring &amp; troubleshooting</li>
               <li>Wireshark, Cisco Packet Tracer</li>
             </ul>
@@ -1204,7 +1242,6 @@
               <li>Cybersecurity principles</li>
               <li>Penetration testing basics</li>
               <li>Network traffic analysis</li>
-              <li>Firewall configuration</li>
             </ul>
           </div>
 
@@ -1222,11 +1259,11 @@
           <div class="skill-group reveal">
             <h3>Web Development</h3>
             <ul>
-              <li>Laravel, REST APIs, Sanctum</li>
+              <li>Laravel, REST APIs</li>
               <li>Livewire, FilamentPHP</li>
               <li>Tailwind CSS, HTML</li>
-              <li>Flutter / Dart (mobile)</li>
-              <li>MySQL, Eloquent ORM</li>
+              <li>Flutter / Dart</li>
+              <li>MySQL</li>
             </ul>
           </div>
 
@@ -1245,8 +1282,6 @@
             <h3>Soft Skills</h3>
             <ul>
               <li>Problem-solving</li>
-              <li>Self-directed learning</li>
-              <li>Project delivery</li>
               <li>Documentation</li>
               <li>Multilingual communication</li>
             </ul>
@@ -1265,22 +1300,22 @@
 
           <div class="net-card reveal">
             <h3>Infrastructure &amp; Protocols</h3>
-            <p>Studied network protocols across two years, including the TCP/IP stack, routing protocols, switching concepts, and network architecture. Worked with Cisco Packet Tracer to simulate and configure real-world topologies — routers, switches, VLANs, and inter-VLAN routing.</p>
+            <p>Studied network protocols across four years — TCP/IP stack, routing, switching, and network architecture. Configured real-world topologies in Cisco Packet Tracer: routers, switches, VLANs, and inter-VLAN routing.</p>
           </div>
 
           <div class="net-card reveal">
             <h3>Security &amp; Server Administration</h3>
-            <p>Completed coursework in Network Security I &amp; II and Server Administration I &amp; II. Topics include firewall rules, access control lists, intrusion prevention, VPNs, and Linux server configuration. Also applied web security and penetration testing concepts directly in own projects.</p>
+            <p>Completed coursework in Network Security and Server Administration — firewall rules, ACLs, VPNs, and Linux server setup. Applied web security and penetration testing concepts directly in personal projects.</p>
           </div>
 
           <div class="net-card reveal">
             <h3>Wireless, IoT &amp; Cloud</h3>
-            <p>Studied Wireless &amp; Mobile Computing, Internet of Things, and Cloud Computing as part of the 4th-year curriculum. This provides an understanding of how modern networks extend beyond traditional infrastructure into edge and distributed environments.</p>
+            <p>Studied Wireless &amp; Mobile Computing, IoT, and Cloud Computing as part of the university curriculum. Solid understanding of how modern networks extend beyond traditional infrastructure into edge environments.</p>
           </div>
 
           <div class="net-card reveal">
             <h3>Network Scripting &amp; Monitoring</h3>
-            <p>Built a real-time network monitoring dashboard using Python and Flask that displays live internet speed, connected devices, and routing table data. Also built a TCP socket-based chat server, providing hands-on experience with low-level network programming.</p>
+            <p>Built a real-time network monitoring dashboard in Python/Flask — live internet speed, connected devices, and routing table data. Also built a TCP socket chat server for hands-on low-level network programming.</p>
           </div>
 
         </div>
@@ -1555,12 +1590,25 @@
       </div>
     </section>
 
-    
     <section id="certifications" aria-labelledby="certs-heading">
       <div class="section-inner">
-        <p class="section-label reveal">Certifications</p>
+        <p class="section-label reveal">Certifications &amp; Education</p>
         <h2 class="section-title reveal" id="certs-heading">Credentials.</h2>
         <div class="certs-list reveal">
+          <div class="cert-row">
+            <div>
+              <div class="cert-name">B.Sc. Computer Science — Networks</div>
+              <div class="cert-org">University of Mosul · Class of 2026</div>
+            </div>
+            <span class="cert-status done">Graduated</span>
+          </div>
+          <div class="cert-row">
+            <div>
+              <div class="cert-name">Dean's Appreciation Certificate</div>
+              <div class="cert-org">College of Computer Science &amp; Mathematics, University of Mosul · May 2026</div>
+            </div>
+            <span class="cert-status done">Awarded</span>
+          </div>
           <div class="cert-row">
             <div>
               <div class="cert-name">CCNA — Cisco Certified Network Associate</div>
@@ -1575,6 +1623,13 @@
             </div>
             <span class="cert-status done">Completed</span>
           </div>
+        </div>
+
+        <div class="cert-img-block reveal">
+          <div class="cert-img-label">Dean's Appreciation Certificate — University of Mosul, May 2026</div>
+          <img src="images/certificate.jpg"
+               alt="Dean's Appreciation Certificate — May 2026"
+               loading="lazy" width="1200" height="862">
         </div>
       </div>
     </section>
@@ -1628,7 +1683,7 @@
               <div class="info-row">
                 <div class="info-lbl">Education</div>
                 <div class="info-val">University of Mosul</div>
-                <div class="info-sub">CS &amp; Networks — 4th Year</div>
+                <div class="info-sub">B.Sc. CS &amp; Networks — Graduated 2026</div>
               </div>
               <div class="info-row">
                 <div class="info-lbl">Focus</div>
@@ -1706,4 +1761,3 @@
 
 </body>
 </html>
-
